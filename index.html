@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sel Volta | Media Pembelajaran Interaktif dan Lab Maya</title>
+<meta name="description" content="Media pembelajaran interaktif Sel Volta untuk Kimia Kelas XII: materi, permainan, praktikum virtual Lab Maya, dan latihan soal.">
+<meta name="theme-color" content="#0E2240">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E2240'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%23FFC21A' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23F26A21'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>window.__imgq=[];function imgErr(el){window.__imgq.push(el);}</script>
+</head>
+<body>
+<div id="viewport">
+  <div id="stage">
+    <div id="efek-salah"></div>
+
+    <!-- Audio: efek suara + musik latar -->
+    <audio id="bgm" loop preload="auto"></audio>
+    <div id="audio-dock">
+      <div id="audio-widget">
+        <button class="icon-btn-small" id="sound-toggle" data-sfx="no" onclick="toggleSound()" title="Efek suara" aria-label="Efek suara">🔊</button>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="1" oninput="changeVolume(this.value)" title="Volume efek suara" aria-label="Volume efek suara">
+      </div>
+      <div id="bgm-widget">
+        <button id="btn-bgm" onclick="toggleBacksound()" title="Musik latar: mati, klik untuk menyalakan" aria-label="Musik latar">🔇</button>
+        <input type="range" id="bgm-volume" min="0" max="100" value="50" oninput="ubahVolumeBacksound(this.value)" title="Volume musik latar" aria-label="Volume musik latar">
+      </div>
+    </div>
+
+    <!-- ============ LAYAR JUDUL ============ -->
+    <section id="scr-judul" class="screen active">
+      <div class="bg" aria-hidden="true"><svg class="judul-atom" viewBox="0 0 400 400" aria-hidden="true"><g class="shell s1"><circle cx="200" cy="200" r="70"/><circle class="e" cx="270.0" cy="200.0" r="3.2"/><circle class="e" cx="130.0" cy="200.0" r="3.2"/></g><g class="shell s2"><circle cx="200" cy="200" r="100"/><circle class="e" cx="292.4" cy="238.3" r="3.2"/><circle class="e" cx="238.3" cy="292.4" r="3.2"/><circle class="e" cx="161.7" cy="292.4" r="3.2"/><circle class="e" cx="107.6" cy="238.3" r="3.2"/><circle class="e" cx="107.6" cy="161.7" r="3.2"/><circle class="e" cx="161.7" cy="107.6" r="3.2"/><circle class="e" cx="238.3" cy="107.6" r="3.2"/><circle class="e" cx="292.4" cy="161.7" r="3.2"/></g><g class="shell s3"><circle cx="200" cy="200" r="132"/><circle class="e" cx="332.0" cy="200.0" r="3.2"/><circle class="e" cx="324.0" cy="245.1" r="3.2"/><circle class="e" cx="301.1" cy="284.8" r="3.2"/><circle class="e" cx="266.0" cy="314.3" r="3.2"/><circle class="e" cx="222.9" cy="330.0" r="3.2"/><circle class="e" cx="177.1" cy="330.0" r="3.2"/><circle class="e" cx="134.0" cy="314.3" r="3.2"/><circle class="e" cx="98.9" cy="284.8" r="3.2"/><circle class="e" cx="76.0" cy="245.1" r="3.2"/><circle class="e" cx="68.0" cy="200.0" r="3.2"/><circle class="e" cx="76.0" cy="154.9" r="3.2"/><circle class="e" cx="98.9" cy="115.2" r="3.2"/><circle class="e" cx="134.0" cy="85.7" r="3.2"/><circle class="e" cx="177.1" cy="70.0" r="3.2"/><circle class="e" cx="222.9" cy="70.0" r="3.2"/><circle class="e" cx="266.0" cy="85.7" r="3.2"/><circle class="e" cx="301.1" cy="115.2" r="3.2"/><circle class="e" cx="324.0" cy="154.9" r="3.2"/></g><g class="shell s4"><circle cx="200" cy="200" r="165"/><circle class="e" cx="362.5" cy="228.7" r="3.2"/><circle class="e" cx="342.9" cy="282.5" r="3.2"/><circle class="e" cx="306.1" cy="326.4" r="3.2"/><circle class="e" cx="256.4" cy="355.0" r="3.2"/><circle class="e" cx="200.0" cy="365.0" r="3.2"/><circle class="e" cx="143.6" cy="355.0" r="3.2"/><circle class="e" cx="93.9" cy="326.4" r="3.2"/><circle class="e" cx="57.1" cy="282.5" r="3.2"/><circle class="e" cx="37.5" cy="228.7" r="3.2"/><circle class="e" cx="37.5" cy="171.3" r="3.2"/><circle class="e" cx="57.1" cy="117.5" r="3.2"/><circle class="e" cx="93.9" cy="73.6" r="3.2"/><circle class="e" cx="143.6" cy="45.0" r="3.2"/><circle class="e" cx="200.0" cy="35.0" r="3.2"/><circle class="e" cx="256.4" cy="45.0" r="3.2"/><circle class="e" cx="306.1" cy="73.6" r="3.2"/><circle class="e" cx="342.9" cy="117.5" r="3.2"/><circle class="e" cx="362.5" cy="171.3" r="3.2"/></g><g class="shell s5"><circle cx="200" cy="200" r="196"/><circle class="e gold" cx="200.0" cy="4.0" r="3.2"/><circle class="e gold" cx="386.4" cy="139.4" r="3.2"/><circle class="e gold" cx="315.2" cy="358.6" r="3.2"/><circle class="e gold" cx="84.8" cy="358.6" r="3.2"/><circle class="e gold" cx="13.6" cy="139.4" r="3.2"/></g></svg></div>
+      <div class="judul-topright">
+        <button class="home-section-btn" data-sfx onclick="openModal('modal-info')">Data Pelajaran</button>
+        <button class="home-section-btn" data-sfx onclick="openModal('modal-dev')">Profil</button>
+        <button class="home-section-btn" data-sfx onclick="openModal('modal-ref')">Referensi</button>
+      </div>
+      <div class="judul-grid">
+        <div class="judul-text">
+          <p class="judul-eyebrow">Media Pembelajaran Interaktif &nbsp;|&nbsp; Kimia Fase F</p>
+          <h1 class="judul-utama" id="cfg-judul">Judul Materi</h1>
+          <p class="judul-sub" id="cfg-subjudul">Sub Judul Materi</p>
+          <ul class="judul-chips" aria-label="Isi media">
+            <li>Belajar</li><li>Bermain</li><li>Lab Maya</li><li>Berlatih</li>
+          </ul>
+          <button class="btn mulai-btn" data-sfx onclick="openModal('modal-login')">▶ MULAI</button>
+        </div>
+        <figure class="judul-visual">
+          <img id="cfg-bgjudul" src="./asset/img/bg_judul.jpg" alt="Ilustrasi sel Volta Zn–Cu dengan jembatan garam" onerror="imgErr(this)">
+          <figcaption>Sel Daniell: Zn | Zn²⁺ ‖ Cu²⁺ | Cu</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ LAYAR MENU ============ -->
+    <section id="scr-menu" class="screen">
+      <div class="bg"></div>
+      <div class="topbar">
+        <div class="judul-bar"><span id="cfg-judul-menu">Judul Materi</span><small>Pilih kegiatan belajar kalian</small></div>
+        <div class="spacer"></div>
+        <button class="icon-btn" data-sfx onclick="goJudul()" title="Beranda" aria-label="Beranda">⌂</button>
+      </div>
+      <div class="menu-head">
+        <h2>Anak-anak, mari kita mulai pembelajaran!</h2>
+        <p>Pak Sabirin menyarankan urutan ini: mulai dari <b>Belajar</b>, lanjut ke <b>Bermain</b>, lakukan praktikum di <b>Lab Maya</b>, lalu akhiri dengan <b>Berlatih</b>.</p>
+      </div>
+      <div class="menu-cards empat">
+        <button class="menu-card mc-belajar" data-sfx onclick="startBelajar()">
+          <img src="./asset/img/menu_belajar.png" class="img-ikon" alt="" onerror="imgErr(this)">
+          <div class="mc-judul">Belajar</div>
+          <div class="mc-sub">Materi Pembelajaran</div>
+        </button>
+        <button class="menu-card mc-bermain" data-sfx onclick="startBermain()">
+          <img src="./asset/img/menu_bermain.png" class="img-ikon" alt="" onerror="imgErr(this)">
+          <div class="mc-judul">Bermain</div>
+          <div class="mc-sub">10 Permainan Interaktif</div>
+        </button>
+        <button class="menu-card mc-lab" data-sfx onclick="startLabMaya()">
+          <div class="lab-ikon-emoji" aria-hidden="true">🔬</div>
+          <div class="mc-judul">Lab Maya</div>
+          <div class="mc-sub">Rakit Sel Volta</div>
+        </button>
+        <button class="menu-card mc-berlatih" data-sfx onclick="startBerlatih()">
+          <img src="./asset/img/menu_berlatih.png" class="img-ikon" alt="" onerror="imgErr(this)">
+          <div class="mc-judul">Berlatih</div>
+          <div class="mc-sub">10 Soal Evaluasi</div>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ LAYAR BELAJAR ============ -->
+    <section id="scr-belajar" class="screen">
+      <div class="bg"></div>
+      <div class="topbar">
+        <div class="judul-bar">Belajar<small id="belajar-sub">Materi</small></div>
+        <div class="spacer"></div>
+        <div class="progress-wrap"><span class="progress-label" id="belajar-plabel">1/7</span><div class="progress-track"><div class="progress-fill" id="belajar-pfill"></div></div></div>
+        <button class="icon-btn" data-sfx onclick="goMenu()" title="Menu" aria-label="Menu">☰</button>
+      </div>
+      <div class="content" id="belajar-content"></div>
+      <div class="navbar">
+        <button class="nav-btn nav-back" id="belajar-prev" data-sfx onclick="belajarPrev()">◀ Sebelumnya</button>
+        <button class="nav-btn nav-next" id="belajar-next" data-sfx onclick="belajarNext()">Selanjutnya ▶</button>
+      </div>
+    </section>
+
+    <!-- ============ LAYAR BERMAIN ============ -->
+    <section id="scr-bermain" class="screen">
+      <div class="bg"></div>
+      <div class="topbar">
+        <div class="judul-bar">Bermain<small id="bermain-sub">Aktivitas Interaktif</small></div>
+        <div class="spacer"></div>
+        <div class="skor-badge">🏆 Skor: <span id="skor-bermain-angka">0</span></div>
+        <div class="progress-wrap" style="margin-left:10px"><span class="progress-label" id="bermain-plabel">1/10</span><div class="progress-track" style="width:120px"><div class="progress-fill" id="bermain-pfill"></div></div></div>
+        <button class="icon-btn" data-sfx onclick="goMenu()" title="Menu" aria-label="Menu">☰</button>
+      </div>
+      <div class="content" id="bermain-content"></div>
+      <div class="navbar">
+        <button class="nav-btn nav-back" id="bermain-prev" data-sfx onclick="bermainPrev()">◀ Sebelumnya</button>
+        <button class="nav-btn nav-next" id="bermain-next" data-sfx onclick="bermainNext()" disabled>Selanjutnya ▶</button>
+      </div>
+    </section>
+
+    <!-- ============ LAYAR BERLATIH ============ -->
+    <section id="scr-berlatih" class="screen">
+      <div class="bg"></div>
+      <div class="topbar">
+        <div class="judul-bar">Berlatih<small id="berlatih-sub">Uji Pemahaman</small></div>
+        <div class="spacer"></div>
+        <div class="skor-badge">🏆 Skor: <span id="skor-berlatih-angka">0</span></div>
+        <div class="progress-wrap" style="margin-left:10px"><span class="progress-label" id="berlatih-plabel">1/10</span><div class="progress-track" style="width:160px"><div class="progress-fill" id="berlatih-pfill"></div></div></div>
+        <button class="icon-btn" data-sfx onclick="goMenu()" title="Menu" aria-label="Menu">☰</button>
+      </div>
+      <div class="content" id="berlatih-content"></div>
+      <div class="navbar">
+        <button class="nav-btn nav-back" id="berlatih-prev" data-sfx onclick="berlatihPrev()">◀ Sebelumnya</button>
+        <button class="nav-btn nav-next" id="berlatih-next" data-sfx onclick="berlatihNext()" disabled>Selanjutnya ▶</button>
+      </div>
+    </section>
+
+    <!-- ============ LAYAR LAB MAYA ============ -->
+    <section id="scr-lab" class="screen">
+      <div class="bg"></div>
+      <div class="topbar">
+        <div class="judul-bar">Lab Maya<small>Praktikum Virtual Sel Volta</small></div>
+        <div class="spacer"></div>
+        <div class="lab-badge-misi">🎯 Misi: <span id="lab-misi-count">0/5</span></div>
+        <div class="skor-badge">🏆 Skor: <span id="lab-skor-angka">0</span></div>
+        <button class="icon-btn" data-sfx onclick="goMenu()" title="Menu" aria-label="Menu">☰</button>
+      </div>
+      <div class="content lab-content">
+        <div class="lab-toast" id="lab-toast" role="status" aria-live="polite"></div>
+        <div class="lab-wrap">
+
+          <!-- MEJA PRAKTIKUM -->
+          <div class="lab-bench">
+            <div class="lab-bench-head">
+              <span class="lab-bench-title">Meja Praktikum</span>
+              <button class="lab-mode" id="lab-mode" data-sfx onclick="labToggleMikro()" aria-pressed="false">🔬 Mode Partikel: mati</button>
+              <span class="lab-status off" id="lab-status">Saklar terbuka, rangkaian terputus</span>
+            </div>
+            <div class="lab-stage" id="lab-stage">
+              <svg id="lab-svg" viewBox="0 0 744 496" role="img" aria-label="Rangkaian sel Volta: dua gelas kimia berisi larutan, elektrode, jembatan garam, saklar, lampu, dan voltmeter">
+                <defs>
+                  <radialGradient id="bgStage" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="#1B3A6B"/><stop offset="1" stop-color="#0E2240"/></radialGradient>
+                  <linearGradient id="gAn" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#6F7E88"/><stop offset=".5" stop-color="#D3DEE6"/><stop offset="1" stop-color="#6F7E88"/></linearGradient>
+                  <linearGradient id="gKa" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#9A4F22"/><stop offset=".5" stop-color="#F0AA72"/><stop offset="1" stop-color="#9A4F22"/></linearGradient>
+                  <radialGradient id="lampGlowGrad"><stop offset="0" stop-color="#FFE08A" stop-opacity=".95"/><stop offset=".5" stop-color="#FFC21A" stop-opacity=".35"/><stop offset="1" stop-color="#FFC21A" stop-opacity="0"/></radialGradient>
+                  <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                  <clipPath id="clipL"><path d="M54,244 H276 V404 Q276,418 262,418 H68 Q54,418 54,404 Z"/></clipPath>
+                  <clipPath id="clipR"><path d="M468,244 H690 V404 Q690,418 676,418 H482 Q468,418 468,404 Z"/></clipPath>
+                  <path id="ePath" d="M130,146 V70 H614 V146" fill="none"/>
+                  <path id="brPathLR" d="M225,330 V196 Q225,176 245,176 H499 Q519,176 519,196 V330" fill="none"/>
+                  <path id="brPathRL" d="M519,330 V196 Q519,176 499,176 H245 Q225,176 225,196 V330" fill="none"/>
+                </defs>
+
+                <rect width="744" height="496" fill="url(#bgStage)"/>
+                <g fill="none" stroke="#fff" stroke-opacity=".05" stroke-width="1.5">
+                  <circle cx="372" cy="250" r="150"/><circle cx="372" cy="250" r="215"/><circle cx="372" cy="250" r="280"/><circle cx="372" cy="250" r="345"/>
+                </g>
+
+                <!-- meja -->
+                <rect x="24" y="420" width="696" height="13" rx="6.5" fill="#1D3C6E"/>
+                <rect x="24" y="420" width="696" height="3.5" rx="1.75" fill="#3B6CB3"/>
+
+                <!-- ========== GELAS KIRI : ANODA ========== -->
+                <g id="bkL">
+                  <g clip-path="url(#clipL)">
+                    <rect id="solL" x="54" y="290" width="222" height="130" style="fill:var(--sol)"/>
+                    <g transform="translate(48,0)"><g class="wave"><path d="M0,290 q15,-6 30,0 t30,0 q15,-6 30,0 t30,0 q15,-6 30,0 t30,0 q15,-6 30,0 t30,0 q15,-6 30,0 t30,0 q15,-6 30,0 t30,0 V300 H0 Z" style="fill:var(--sol)"/></g></g>
+                    <g id="ionsL"></g>
+                  </g>
+                  <rect x="121" y="146" width="18" height="16" rx="3" fill="#3A557F" stroke="#9FB2D4" stroke-width="1.5"/>
+                  <rect id="plateL" x="117" y="158" width="26" height="238" rx="3" fill="url(#gAn)" stroke="rgba(255,255,255,.35)"/>
+                  <text id="symL" x="130" y="198" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" stroke="rgba(8,20,42,.7)" stroke-width="3" paint-order="stroke" font-family="Figtree,sans-serif">Zn</text>
+                  <g clip-path="url(#clipL)">
+                    <rect id="wetL" x="117" y="290" width="26" height="106" style="fill:var(--sol)" opacity=".4"/>
+                    <g id="genL"></g>
+                  </g>
+                  <path class="lab-glass" d="M52,244 V404 Q52,420 68,420 H262 Q278,420 278,404 V244"/>
+                  <path d="M44,244 H52 M278,244 H286" stroke="rgba(255,255,255,.62)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M66,256 V396" stroke="#fff" stroke-opacity=".22" stroke-width="4" stroke-linecap="round" fill="none"/>
+                  <text id="solLblL" x="64" y="263" class="lab-txt" style="font-size:10.5px">Zn²⁺(aq)</text>
+                  <text id="massLblL" x="64" y="278" font-size="10.5" font-weight="800" fill="#FFB27A" font-family="Figtree,sans-serif" opacity="0" style="transition:opacity .5s">▼ massa</text>
+                </g>
+
+                <!-- ========== GELAS KANAN : KATODA ========== -->
+                <g id="bkR">
+                  <g clip-path="url(#clipR)">
+                    <rect id="solR" x="468" y="290" width="222" height="130" style="fill:var(--sol)"/>
+                    <g transform="translate(462,0)"><g class="wave"><path d="M0,290 q15,-6 30,0 t30,0 q15,-6 30,0 t30,0 q15,-6 30,0 t30,0 q15,-6 30,0 t30,0 q15,-6 30,0 t30,0 q15,-6 30,0 t30,0 V300 H0 Z" style="fill:var(--sol)"/></g></g>
+                    <g id="ionsR"></g>
+                  </g>
+                  <rect x="605" y="146" width="18" height="16" rx="3" fill="#3A557F" stroke="#9FB2D4" stroke-width="1.5"/>
+                  <g clip-path="url(#clipR)">
+                    <rect id="depR" x="607" y="292" width="14" height="104" rx="4" fill="#D9824A" opacity="0"/>
+                  </g>
+                  <rect id="plateR" x="601" y="158" width="26" height="238" rx="3" fill="url(#gKa)" stroke="rgba(255,255,255,.35)"/>
+                  <text id="symR" x="614" y="198" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" stroke="rgba(8,20,42,.7)" stroke-width="3" paint-order="stroke" font-family="Figtree,sans-serif">Cu</text>
+                  <g clip-path="url(#clipR)">
+                    <rect id="wetR" x="601" y="290" width="26" height="106" style="fill:var(--sol)" opacity=".4"/>
+                    <g id="genR"></g>
+                  </g>
+                  <path class="lab-glass" d="M466,244 V404 Q466,420 482,420 H676 Q692,420 692,404 V244"/>
+                  <path d="M458,244 H466 M692,244 H700" stroke="rgba(255,255,255,.62)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M480,256 V396" stroke="#fff" stroke-opacity=".22" stroke-width="4" stroke-linecap="round" fill="none"/>
+                  <text id="solLblR" x="680" y="263" text-anchor="end" class="lab-txt" style="font-size:10.5px">Cu²⁺(aq)</text>
+                  <text id="massLblR" x="680" y="278" text-anchor="end" font-size="10.5" font-weight="800" fill="#FFD86B" font-family="Figtree,sans-serif" opacity="0" style="transition:opacity .5s">▲ massa</text>
+                </g>
+
+                <!-- ========== JEMBATAN GARAM ========== -->
+                <path id="bridgeGhost" class="bridge-ghost" d="M225,330 V196 Q225,176 245,176 H499 Q519,176 519,196 V330" stroke-width="22"/>
+                <g id="lab-bridge" class="lepas">
+                  <path d="M225,330 V196 Q225,176 245,176 H499 Q519,176 519,196 V330" fill="none" stroke="#B7C7E4" stroke-opacity=".6" stroke-width="26"/>
+                  <path d="M225,330 V196 Q225,176 245,176 H499 Q519,176 519,196 V330" fill="none" stroke="#EAF1FF" stroke-opacity=".9" stroke-width="18"/>
+                  <circle cx="225" cy="330" r="9" fill="#EFE7CF" stroke="#BFB48F"/><circle cx="519" cy="330" r="9" fill="#EFE7CF" stroke="#BFB48F"/>
+                  <g class="bridge-ions" id="bridgeIons" opacity="0"></g>
+                </g>
+                <text id="brTagKiri" x="244" y="212" font-size="11" font-weight="800" fill="#8EC1FF" font-family="Figtree,sans-serif" opacity="0" style="transition:opacity .4s">◀ NO₃⁻ ke anoda</text>
+                <text id="brTagKanan" x="500" y="212" text-anchor="end" font-size="11" font-weight="800" fill="#FFA566" font-family="Figtree,sans-serif" opacity="0" style="transition:opacity .4s">K⁺ ke katoda ▶</text>
+
+                <!-- ========== RANGKAIAN LUAR ========== -->
+                <path class="lab-wire" d="M130,146 V70 H199"/>
+                <path class="lab-wire" d="M291,70 H338"/>
+                <path class="lab-wire" d="M402,70 H434"/>
+                <path class="lab-wire" d="M572,70 H614 V146"/>
+                <g id="lab-elektron" filter="url(#glow)"></g>
+
+                <!-- saklar -->
+                <g id="lab-switch">
+                  <circle cx="205" cy="70" r="6.5" class="lab-term"/><circle cx="285" cy="70" r="6.5" class="lab-term"/>
+                  <line id="lab-switch-lever" x1="205" y1="70" x2="283" y2="70" stroke="#D7E1F5" stroke-width="6" stroke-linecap="round"/>
+                  <text class="lab-txt" x="245" y="100" text-anchor="middle">SAKLAR</text>
+                </g>
+
+                <!-- lampu -->
+                <g id="lab-lamp">
+                  <circle id="lampGlow" class="lamp-glow" cx="370" cy="70" r="66" fill="url(#lampGlowGrad)"/>
+                  <g id="lampRays" class="lamp-rays" stroke="#FFC21A" stroke-width="3" stroke-linecap="round"><line x1="397.7" y1="81.5" x2="408.8" y2="86.1"/><line x1="381.5" y1="97.7" x2="386.1" y2="108.8"/><line x1="358.5" y1="97.7" x2="353.9" y2="108.8"/><line x1="342.3" y1="81.5" x2="331.2" y2="86.1"/><line x1="342.3" y1="58.5" x2="331.2" y2="53.9"/><line x1="358.5" y1="42.3" x2="353.9" y2="31.2"/><line x1="381.5" y1="42.3" x2="386.1" y2="31.2"/><line x1="397.7" y1="58.5" x2="408.8" y2="53.9"/></g>
+                  <circle id="lampBulb" cx="370" cy="70" r="22" fill="#12294D" stroke="#7F96BD" stroke-width="3" style="transition:fill .4s, stroke .4s"/>
+                  <path id="lampFil" d="M356,74 L362,62 L367,78 L373,62 L378,78 L384,66" fill="none" stroke="#7F96BD" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="transition:stroke .4s"/>
+                  <circle cx="344" cy="70" r="5.5" class="lab-term"/><circle cx="396" cy="70" r="5.5" class="lab-term"/>
+                  <text class="lab-txt" x="370" y="112" text-anchor="middle">LAMPU</text>
+                </g>
+
+                <!-- voltmeter -->
+                <g id="lab-vm">
+                  <rect x="440" y="20" width="126" height="102" rx="12" fill="#0A1830" stroke="#3E5E94" stroke-width="2.5"/>
+                  <text class="lab-txt" x="503" y="37" text-anchor="middle">VOLTMETER</text>
+                  <path d="M466.96,72.76 A44,44 0 0 1 539.04,72.76" fill="none" stroke="#3E5E94" stroke-width="3" stroke-linecap="round"/>
+                  <g stroke="#7F96BD" stroke-width="1.6"><line x1="467.0" y1="72.8" x2="471.1" y2="75.6"/><line x1="475.1" y1="63.9" x2="478.3" y2="67.8"/><line x1="485.4" y1="57.7" x2="487.4" y2="62.3"/><line x1="497.0" y1="54.4" x2="497.7" y2="59.4"/><line x1="509.0" y1="54.4" x2="508.3" y2="59.4"/><line x1="520.6" y1="57.7" x2="518.6" y2="62.3"/><line x1="530.9" y1="63.9" x2="527.7" y2="67.8"/><line x1="539.0" y1="72.8" x2="534.9" y2="75.6"/></g>
+                  <text class="lab-txt" x="458" y="88" text-anchor="middle" style="font-size:8.5px">0</text>
+                  <text class="lab-txt" x="548" y="88" text-anchor="middle" style="font-size:8.5px">3,5</text>
+                  <line id="vm-needle" x1="503" y1="98" x2="503" y2="60" stroke="#FFC21A" stroke-width="2.8" stroke-linecap="round"/>
+                  <circle cx="503" cy="98" r="4.5" fill="#FFC21A"/>
+                  <text id="vm-reading" x="503" y="115" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="13" font-weight="800" fill="#5C6F8F">0,00 V</text>
+                  <circle cx="440" cy="70" r="8" fill="#1D3C6E" stroke="#ECEFF1" stroke-width="2"/>
+                  <text x="440" y="75" text-anchor="middle" font-size="14" font-weight="800" fill="#fff" font-family="Figtree,sans-serif">−</text>
+                  <circle cx="566" cy="70" r="8" fill="#F26A21" stroke="#ECEFF1" stroke-width="2"/>
+                  <text x="566" y="75" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="Figtree,sans-serif">+</text>
+                </g>
+
+                <!-- keterangan arus elektron -->
+                <g id="capG" opacity="0" style="transition:opacity .5s">
+                  <rect x="262" y="128" width="220" height="24" rx="12" fill="rgba(255,194,26,.14)" stroke="#FFC21A" stroke-width="1.2"/>
+                  <text id="capTxt" x="372" y="144.5" text-anchor="middle" font-size="12" font-weight="800" fill="#FFE29A" font-family="Figtree,sans-serif">e⁻ mengalir: Zn → Cu</text>
+                </g>
+
+                <!-- peran & reaksi -->
+                <rect x="52" y="440" width="226" height="22" rx="11" fill="#25508C"/>
+                <text class="lab-pill-txt" x="165" y="455.5" text-anchor="middle" fill="#fff">ANODA (−) · OKSIDASI</text>
+                <text id="rxL" class="lab-rx" x="165" y="484" text-anchor="middle">Zn → Zn²⁺ + 2e⁻</text>
+                <rect x="466" y="440" width="226" height="22" rx="11" fill="#F26A21"/>
+                <text class="lab-pill-txt" x="579" y="455.5" text-anchor="middle" fill="#fff">KATODA (+) · REDUKSI</text>
+                <text id="rxR" class="lab-rx" x="579" y="484" text-anchor="middle">Cu²⁺ + 2e⁻ → Cu</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- PANEL KONTROL -->
+          <div class="lab-panel">
+            <div class="lab-tabs" role="tablist">
+              <button class="lab-tab active" data-tab="rakit" data-sfx onclick="labTab('rakit')">🧰 Rakit</button>
+              <button class="lab-tab" data-tab="data" data-sfx onclick="labTab('data')">📊 Data</button>
+              <button class="lab-tab" data-tab="misi" data-sfx onclick="labTab('misi')">🎯 Misi</button>
+            </div>
+
+            <div class="lab-tab-body" id="tab-rakit" style="display:flex">
+              <div class="lab-sec">
+                <div class="lab-sec-title">Elektrode KIRI <span class="peran-tag peran-an">ANODA (−)</span>
+                  <button class="tukar" data-sfx onclick="labTukar()" title="Tukar posisi kedua logam">⇄ Tukar</button></div>
+                <div class="logam-grid" id="grid-kiri"></div>
+              </div>
+              <div class="lab-sec">
+                <div class="lab-sec-title">Elektrode KANAN <span class="peran-tag peran-kat">KATODA (+)</span></div>
+                <div class="logam-grid" id="grid-kanan"></div>
+              </div>
+              <div class="lab-sec">
+                <div class="lab-sec-title">⚙️ Sambungan Rangkaian</div>
+                <div class="lab-toggle-row">
+                  <button class="lab-toggle off" id="tg-bridge" data-sfx onclick="toggleBridge()">🌉 Jembatan Garam</button>
+                  <button class="lab-toggle off" id="tg-saklar" data-sfx onclick="toggleSaklar()">⚡ Saklar</button>
+                </div>
+                <div class="lab-hint">💡 Sel bekerja bila E°sel positif, jembatan terpasang, dan saklar tertutup.</div>
+              </div>
+              <button class="lab-reset-btn" data-sfx onclick="labReset()">🔄 Reset Praktikum</button>
+            </div>
+
+            <div class="lab-tab-body" id="tab-data" style="display:none">
+              <div class="lab-sec"><div class="lab-sec-title" style="color:var(--navy-3)">ANODA (−) · Oksidasi · KIRI</div><div id="d-anoda"></div></div>
+              <div class="lab-sec"><div class="lab-sec-title" style="color:var(--orange-d)">KATODA (+) · Reduksi · KANAN</div><div id="d-katoda"></div></div>
+              <div class="lab-sec"><div class="lab-sec-title">Reaksi Sel</div><div id="d-total"></div></div>
+              <div class="lab-sec"><div class="lab-sec-title">🧮 Potensial Sel</div><div id="d-ehitung"></div></div>
+              <div class="lab-sec"><div class="lab-sec-title">📝 Notasi Sel</div><div id="d-notasi"></div></div>
+              <div class="lab-sec"><div class="lab-sec-title">🔎 Spontanitas &amp; Pengamatan</div><div id="d-spontan"></div><div class="lab-makro" id="d-makro"></div></div>
+              <button class="lab-reset-btn" data-sfx onclick="labCatat()">📓 Catat Pengamatan ke LKPD</button>
+              <div class="lab-log" id="lab-log"></div>
+            </div>
+
+            <div class="lab-tab-body" id="tab-misi" style="display:none">
+              <div class="misi-card" id="misi-1">
+                <div class="misi-head"><span class="misi-no">1</span><span class="misi-status" id="st-m1">⬜ Belum selesai</span></div>
+                <div class="misi-teks"><b>Sel Daniell:</b> rakit sel dari elektrode <b>Zn</b> (anoda, kiri) dan <b>Cu</b> (katoda, kanan), lalu pasang jembatan garam dan tutup saklar. Amati tegangannya!</div>
+              </div>
+              <div class="misi-card" id="misi-2">
+                <div class="misi-head"><span class="misi-no">2</span><span class="misi-status" id="st-m2">⬜ Belum selesai</span></div>
+                <div class="misi-teks"><b>Tegangan Super:</b> ganti elektrode sehingga E°sel ≥ 1,50 V. Petunjuk: pilih pasangan logam dengan selisih E° yang besar.</div>
+              </div>
+              <div class="misi-card" id="misi-3">
+                <div class="misi-head"><span class="misi-no">3</span><span class="misi-status" id="st-m3">⬜ Belum selesai</span></div>
+                <div class="misi-teks"><b>Pentingnya Jembatan Garam:</b> dengan sel yang sedang aktif, lepas jembatan garam dan amati voltmeter serta lampu.</div>
+              </div>
+              <div class="misi-card" id="misi-4">
+                <div class="misi-head"><span class="misi-no">4</span><span class="misi-status" id="st-m4">⬜ Belum selesai</span></div>
+                <div class="misi-teks"><b>Analisis Anoda:</b> tentukan elektrode yang menjadi anoda pada sel yang sedang aktif.</div>
+                <div id="m4-quiz"></div>
+              </div>
+              <div class="misi-card" id="misi-5">
+                <div class="misi-head"><span class="misi-no">5</span><span class="misi-status" id="st-m5">⬜ Belum selesai</span></div>
+                <div class="misi-teks"><b>Notasi Sel:</b> pilih notasi sel yang benar untuk konfigurasi sel yang sedang aktif.</div>
+                <div id="m5-quiz"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar">
+        <button class="nav-btn nav-back" data-sfx onclick="goMenu()">◀ Kembali ke Menu</button>
+        <button class="nav-btn nav-next" id="lab-selesai-btn" data-sfx onclick="labSelesai()" disabled>Selesai Praktikum ▶</button>
+      </div>
+    </section>
+
+    <!-- ============ MODAL LOGIN ============ -->
+    <div class="modal-bg" id="modal-login">
+      <div class="modal" style="width: 550px; text-align: center; padding: 46px;">
+        <button class="tutup" data-sfx onclick="closeModal('modal-login')" aria-label="Tutup">✕</button>
+        <h3>Selamat Datang!</h3>
+        <p style="margin-bottom:22px;">Silakan isi identitasmu sebelum mulai belajar.</p>
+        <input type="text" id="in-nama" class="input-form" placeholder="Nama Lengkap" required>
+        <input type="text" id="in-sekolah" class="input-form" placeholder="Asal Sekolah">
+        <input type="text" id="in-kelas" class="input-form" placeholder="Kelas">
+        <div id="login-pesan" style="color:var(--bad-d); font-weight:700; margin-bottom:14px; display:none;">⚠️ Nama belum diisi!</div>
+        <button class="btn btn-kuning" style="width:100%; height:62px; font-size:23px; margin-top:8px;" data-sfx onclick="simpanIdentitas()">Mulai Belajar</button>
+      </div>
+    </div>
+
+    <!-- ============ MODAL INFO ============ -->
+    <div class="modal-bg" id="modal-info">
+      <div class="modal">
+        <button class="tutup" data-sfx onclick="closeModal('modal-info')" aria-label="Tutup">✕</button>
+        <h3>Informasi Materi</h3>
+        <table class="info-tabel">
+          <tr><td>Fase / Kelas</td><td id="cfg-fase">Fase F • Kelas XII</td></tr>
+          <tr><td>Mata Pelajaran</td><td id="cfg-mapel">Kimia</td></tr>
+          <tr><td>Unit</td><td id="cfg-unit">Elektrokimia</td></tr>
+          <tr><td>Sub Unit</td><td id="cfg-subunit">Sel Volta</td></tr>
+          <tr><td>Tujuan Pembelajaran</td><td id="cfg-tp"></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ MODAL PROFIL ============ -->
+    <div class="modal-bg" id="modal-dev">
+      <div class="modal" style="width: 860px; padding: 38px 40px;">
+        <button class="tutup" data-sfx onclick="closeModal('modal-dev')" aria-label="Tutup">✕</button>
+        <h3 style="text-align: center; margin-bottom: 22px;">Profil Pengembang</h3>
+        <div style="display: flex; gap: 30px; align-items: center; background: var(--tint-2); padding: 28px; border-radius: 20px; border: 1.5px solid var(--line);">
+          <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+            <div style="position: relative;">
+              <img id="cfg-foto" src="./asset/img/profil.jpg" alt="Foto Pengembang" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; box-shadow: var(--sh-2); background: #fff; border: 4px solid var(--gold);" onerror="imgErr(this)">
+              <div style="position: absolute; bottom: 4px; right: 4px; background: var(--ok-d); color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 3px solid #fff;" title="Terverifikasi">✓</div>
+            </div>
+            <div style="background: var(--orange); color: #fff; font-weight: 800; padding: 6px 18px; border-radius: 99px; font-size: 15px;">Pak Sabirin</div>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <table class="info-tabel" style="margin-top: 0; border-radius: 12px; overflow: hidden; table-layout: fixed;">
+              <tr><td style="width: 33%;">Nama Pengembang</td><td id="cfg-nama" style="font-weight: 800; color: var(--navy); font-size: 21px;"></td></tr>
+              <tr><td>Instansi</td><td id="cfg-instansi"></td></tr>
+              <tr><td>Surel</td><td id="cfg-surel"></td></tr>
+              <tr><td>Tahun Pembuatan</td><td id="cfg-tahun"></td></tr>
+              <tr><td>Jenis</td><td id="cfg-jenis"></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MODAL REFERENSI ============ -->
+    <div class="modal-bg" id="modal-ref">
+      <div class="modal" style="width: 900px; padding: 32px 40px;">
+        <button class="tutup" data-sfx onclick="closeModal('modal-ref')" aria-label="Tutup">✕</button>
+        <h3>Referensi</h3>
+        <h4 style="font-size:15px;color:var(--navy);margin:12px 0 6px;">📚 Referensi Materi</h4>
+        <ul class="referensi-list" id="cfg-ref-materi"></ul>
+        <h4 style="font-size:15px;color:var(--navy);margin:12px 0 6px;">🎨 Aset Visual &amp; Efek Suara</h4>
+        <ul class="referensi-list" id="cfg-ref-aset"></ul>
+        <h4 style="font-size:15px;color:var(--navy);margin:12px 0 6px;">🤖 Keterlibatan AI</h4>
+        <ul class="referensi-list" id="cfg-ref-ai"></ul>
+        <div class="referensi-note">Catatan: seluruh materi, soal, dan pembahasan disusun oleh pengembang.</div>
+      </div>
+    </div>
+
+    <!-- ============ MODAL AKHIR ============ -->
+    <div class="modal-bg" id="modal-akhir">
+      <div class="modal" style="width: 620px; text-align: center; padding: 44px;">
+        <button class="tutup" data-sfx onclick="closeModal('modal-akhir')" aria-label="Tutup">✕</button>
+        <h3 id="akhir-judul">Selesai!</h3>
+        <div class="akhir" style="flex:none; margin:10px 0;">
+          <div class="identitas" id="akhir-ident"></div>
+          <div class="skor-angka" id="akhir-skor">0</div>
+          <div id="akhir-kal" style="font-size:19px; font-weight:700; color:var(--navy); max-width:460px; margin:0 auto;"></div>
+        </div>
+        <div style="display:flex; gap:14px; margin-top:18px;">
+          <button class="btn btn-biru" style="flex:1; height:56px; font-size:18px;" data-sfx onclick="ulangi()">🔁 Ulangi</button>
+          <button class="btn btn-kuning" style="flex:1; height:56px; font-size:18px;" data-sfx onclick="closeModal('modal-akhir'); goMenu()">🏠 Menu Utama</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MODAL LAB SELESAI ============ -->
+    <div class="modal-bg" id="modal-lab">
+      <div class="modal" style="width:640px; text-align:center; padding:44px;">
+        <button class="tutup" data-sfx onclick="closeModal('modal-lab')" aria-label="Tutup">✕</button>
+        <h3>🎉 Praktikum Selesai!</h3>
+        <p>Kamu telah menyelesaikan seluruh misi di Lab Maya.</p>
+        <div class="akhir" style="flex:none; margin:10px 0;">
+          <div style="font-size:19px; font-weight:700; color:var(--navy);">Skor Praktikum</div>
+          <div class="skor-angka"><span id="lab-akhir-skor">0</span></div>
+          <div id="lab-akhir-kal" style="font-size:19px; font-weight:700; max-width:460px; margin:0 auto; color:var(--navy);"></div>
+        </div>
+        <div style="display:flex; gap:14px; margin-top:18px;">
+          <button class="btn btn-biru" style="flex:1; height:56px; font-size:18px;" data-sfx onclick="closeModal('modal-lab')">Lanjut Eksplorasi</button>
+          <button class="btn btn-kuning" style="flex:1; height:56px; font-size:18px;" data-sfx onclick="closeModal('modal-lab'); goMenu()">🏠 Menu Utama</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="script.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>
