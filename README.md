@@ -1,22 +1,21 @@
-# Sel Volta: Media Pembelajaran Interaktif dan Lab Maya
+# Virtual Lab Kimia
 
-Media pembelajaran Kimia Kelas XII (Fase F) dengan empat kegiatan: Belajar, Bermain, Lab Maya (praktikum virtual), dan Berlatih.
+Landing page dan dua topik praktikum virtual (Lab Maya).
 
 ## Struktur
 
-- `index.html` : markup seluruh layar dan SVG Lab Maya
-- `styles.css` : tema visual (token warna di `:root`, selaras dengan situs Sabirin)
-- `script.js`  : konfigurasi, materi, permainan, soal, audio
-- `lab.js`     : logika dan visualisasi Lab Maya
-- `asset/`     : gambar dan audio
+- `index.html`, `styles.css`, `script.js` : landing page
+- `assets/` : logo, foto, dan cuplikan layar kedua lab
+- `sel-volta/` : Media Pembelajaran dan Lab Maya Sel Volta
+- `sel-elektrolisis/` : Media Pembelajaran dan Lab Maya Sel Elektrolisis
 
-## Mengubah isi
+## Menambah topik baru
 
-- Judul, profil, referensi: objek `CONFIG` di awal `script.js`.
-- Materi, permainan, soal: `MATERI`, `dataBermain`, `dtLatih` di `script.js`.
-- Data logam dan potensial reduksi: `LAB_LOGAM` di awal `lab.js`.
-- Warna dan font: variabel di `:root` pada `styles.css`.
+1. Salin salah satu folder topik (mis. `sel-volta/`) menjadi folder baru.
+2. Ganti isi `CONFIG`, `MATERI`, `dataBermain`, dan `dtLatih` di `script.js` topik tersebut.
+3. Duplikasi satu blok `<article class="topic ...">` di `index.html` dan ubah tautannya.
+4. Ambil cuplikan layar lab untuk `assets/` dan perbarui angka statistik pada kartu.
 
 ## Menjalankan
 
-Buka `index.html` di peramban, atau `python3 -m http.server 8000`.
+Buka `index.html` di peramban, atau jalankan `python3 -m http.server 8000` dari folder ini.
