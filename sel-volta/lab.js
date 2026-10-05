@@ -1,6 +1,6 @@
 /* ##############################################################
    #  LAB MAYA — PRAKTIKUM VIRTUAL SEL VOLTA                    #
-   #  Susunan tetap: Anode (−) di KIRI, Katode (+) di KANAN.    #
+   #  Susunan tetap: ANODA (−) di KIRI, KATODA (+) di KANAN.    #
    #  Susunan ini sama dengan notasi sel dan materi Belajar.    #
    ############################################################## */
 const LAB_NS = 'http://www.w3.org/2000/svg';
@@ -18,8 +18,8 @@ const LAB_LOGAM = {
 };
 
 const labS = {
-  kiri:'Zn',      // Anode
-  kanan:'Cu',     // Katode
+  kiri:'Zn',      // ANODA
+  kanan:'Cu',     // KATODA
   bridge:false, saklar:false,
   aktif:false, spontan:false, E:0, AN:null, KA:null,
   waktu:0, catatNo:0, pernahAktif:false, hintMakro:false,
@@ -88,7 +88,7 @@ function labTukar(){
   const t = labS.kiri; labS.kiri = labS.kanan; labS.kanan = t;
   labS.massa = 0; labS.m5key = '';
   labRenderChips(); labUpdate();
-  labToast('⇄ Posisi Anode dan Katode ditukar.');
+  labToast('⇄ Posisi anoda dan katoda ditukar.');
 }
 function toggleBridge(){
   labS.bridge = !labS.bridge;
@@ -171,11 +171,11 @@ function labElektron(){
 /* ---------- Tampilan elektrode (massa berubah seiring waktu) ---------- */
 function labPlates(){
   const p = labS.massa, K = labS.KA;
-  // Anode (kiri): menipis dan memendek karena Zn(s) → Zn²⁺ larut
+  // Anoda (kiri): menipis dan memendek karena Zn(s) → Zn²⁺ larut
   const wA = 26 * (1 - 0.4 * p), botA = 396 - 54 * p;
   const pl = $L('plateL'); pl.setAttribute('x', 130 - wA / 2); pl.setAttribute('width', wA); pl.setAttribute('height', botA - 158);
   const wl = $L('wetL');   wl.setAttribute('x', 130 - wA / 2); wl.setAttribute('width', wA); wl.setAttribute('height', Math.max(0, botA - 290));
-  // Katode (kanan): endapan logam menebal di permukaan
+  // Katoda (kanan): endapan logam menebal di permukaan
   const d = 9 * p, dep = $L('depR');
   dep.setAttribute('x', 614 - 13 - d); dep.setAttribute('width', 26 + 2 * d);
   dep.setAttribute('fill', K.dep);
@@ -184,11 +184,11 @@ function labPlates(){
 
 /* ---------- Pembaruan utama ---------- */
 function labUpdate(){
-  const A = LAB_LOGAM[labS.kiri];    // Anode  : kiri,  kutub (−)
-  const K = LAB_LOGAM[labS.kanan];   // Katode : kanan, kutub (+)
+  const A = LAB_LOGAM[labS.kiri];    // ANODA  : kiri,  kutub (−)
+  const K = LAB_LOGAM[labS.kanan];   // KATODA : kanan, kutub (+)
   labS.AN = A; labS.KA = K;
 
-  // E°sel = E°Katode − E°Anode
+  // E°sel = E°katoda − E°anoda
   labS.E = Math.round((K.Eo - A.Eo) * 100) / 100;
   labS.spontan = labS.E > 0;
   labS.aktif = !!(labS.spontan && labS.bridge && labS.saklar);
@@ -277,32 +277,32 @@ function labUpdate(){
 function labIsiData(){
   const A = labS.AN, K = labS.KA;
 
-  $L('d-Anode').innerHTML = '<b>' + A.nama + ' (' + A.simbol + ')</b>, elektrode kiri · <b style="color:var(--navy-3)">OKSIDASI</b>' +
+  $L('d-anoda').innerHTML = '<b>' + A.nama + ' (' + A.simbol + ')</b>, elektrode kiri · <b style="color:var(--navy-3)">OKSIDASI</b>' +
     '<div class="lab-reaksi">' + A.simbol + '(s) → ' + A.ion + '(aq) + ' + labElektronTeks(A.n) + '</div>';
 
-  $L('d-Katode').innerHTML = '<b>' + K.nama + ' (' + K.simbol + ')</b>, elektrode kanan · <b style="color:var(--orange-d)">REDUKSI</b>' +
+  $L('d-katoda').innerHTML = '<b>' + K.nama + ' (' + K.simbol + ')</b>, elektrode kanan · <b style="color:var(--orange-d)">REDUKSI</b>' +
     '<div class="lab-reaksi">' + K.ion + '(aq) + ' + labElektronTeks(K.n) + ' → ' + K.simbol + '(s)</div>';
 
   $L('d-total').innerHTML = labS.spontan
     ? '<div class="lab-reaksi">' + labReaksiTotal(A, K) + '</div><div class="lab-note">Jumlah elektron di kedua setengah reaksi telah disetarakan.</div>'
     : '<div class="lab-note">Tidak ada reaksi spontan pada susunan ini. Coba tukar posisi kedua logam.</div>';
 
-  $L('d-ehitung').innerHTML = '<div class="lab-rumus">E°sel = E°Katode − E°Anode</div>' +
+  $L('d-ehitung').innerHTML = '<div class="lab-rumus">E°sel = E°katoda − E°anoda</div>' +
     '<div class="lab-reaksi">(' + labFmt(K.Eo, true) + ' V) − (' + labFmt(A.Eo, true) + ' V) = <b>' + labFmt(labS.E, true) + ' V</b></div>' +
-    '<div class="lab-note">Kutub (−) voltmeter terhubung ke Anode (kiri), kutub (+) ke Katode (kanan).</div>';
+    '<div class="lab-note">Kutub (−) voltmeter terhubung ke anoda (kiri), kutub (+) ke katoda (kanan).</div>';
 
   $L('d-notasi').innerHTML = '<div class="lab-reaksi">' + A.simbol + '(s) | ' + A.ion + '(aq) ‖ ' + K.ion + '(aq) | ' + K.simbol + '(s)</div>' +
-    '<div class="lab-note">Urutan notasi sama dengan susunan alat: Anode | ion Anode ‖ ion Katode | Katode.</div>';
+    '<div class="lab-note">Urutan notasi sama dengan susunan alat: anoda | ion anoda ‖ ion katoda | katoda.</div>';
 
   const dS = $L('d-spontan'), dM = $L('d-makro');
   if (labS.E > 0) {
     dS.innerHTML = '<span class="sp ok">SPONTAN ⚡ (E°sel &gt; 0)</span>';
     dM.textContent = labS.aktif
-      ? 'Arus mengalir. Anode (' + A.simbol + ') menipis dan Katode (' + K.simbol + ') terlapisi endapan.'
+      ? 'Arus mengalir. Anoda (' + A.simbol + ') menipis dan katoda (' + K.simbol + ') terlapisi endapan.'
       : 'Reaksi spontan secara termodinamika, tetapi arus belum mengalir karena rangkaian belum lengkap.';
   } else if (labS.E < 0) {
     dS.innerHTML = '<span class="sp bad">TIDAK SPONTAN (E°sel &lt; 0)</span>';
-    dM.textContent = 'E° Katode lebih kecil daripada E° Anode, sehingga reaksi tidak berlangsung. Tukar posisi kedua logam agar logam ber-E° lebih besar menjadi Katode.';
+    dM.textContent = 'E° katoda lebih kecil daripada E° anoda, sehingga reaksi tidak berlangsung. Tukar posisi kedua logam agar logam ber-E° lebih besar menjadi katoda.';
   } else {
     dS.innerHTML = '<span class="sp bad">TIDAK ADA REAKSI BERSIH (E°sel = 0)</span>';
     dM.textContent = 'Kedua elektrode memiliki E° yang sama, sehingga tidak ada kecenderungan reaksi bersih.';
@@ -352,10 +352,10 @@ function labRenderMisi(){
   const q4 = $L('m4-quiz');
   if (q4) {
     if (labS.misi[3]) {
-      q4.innerHTML = '<div class="misi-hint ok">✅ Anode berada di kiri dan terhubung ke kutub (−) voltmeter.</div>';
+      q4.innerHTML = '<div class="misi-hint ok">✅ Anoda berada di kiri dan terhubung ke kutub (−) voltmeter.</div>';
     } else if (labS.aktif) {
       if (!q4.querySelector('.m-btn')) {
-        q4.innerHTML = '<div class="m4-tanya">Elektrode manakah yang menjadi <b>Anode</b> pada rangkaian ini?</div>' +
+        q4.innerHTML = '<div class="m4-tanya">Elektrode manakah yang menjadi <b>ANODA</b> pada rangkaian ini?</div>' +
           '<div class="m4-opsi">' +
           '<button class="m-btn" data-sfx onclick="labJawabM4(\'kiri\')" id="m4-kiri"></button>' +
           '<button class="m-btn" data-sfx onclick="labJawabM4(\'kanan\')" id="m4-kanan"></button></div>' +
@@ -371,7 +371,7 @@ function labRenderMisi(){
   const q5 = $L('m5-quiz');
   if (q5) {
     if (labS.misi[4]) {
-      q5.innerHTML = '<div class="misi-hint ok">✅ Notasi sel: Anode (kiri) | ion Anode ‖ ion Katode | Katode (kanan).</div>';
+      q5.innerHTML = '<div class="misi-hint ok">✅ Notasi sel: anoda (kiri) | ion anoda ‖ ion katoda | katoda (kanan).</div>';
     } else if (labS.aktif) {
       const key = labS.kiri + '|' + labS.kanan;
       if (labS.m5key !== key || !q5.querySelector('.m-nota')) {
@@ -400,12 +400,12 @@ function labJawabM4(sisi){
   const fb = $L('m4-fb');
   if (sisi === 'kiri') {
     btn.classList.add('benar');
-    if (fb) { fb.className = 'feedback show ok'; fb.textContent = 'Benar! Elektrode kiri adalah Anode (−) dan mengalami oksidasi.'; }
+    if (fb) { fb.className = 'feedback show ok'; fb.textContent = 'Benar! Elektrode kiri adalah anoda (−) dan mengalami oksidasi.'; }
     labS.misi[3] = true;
-    labSkor(20, '🎉 Misi 4 selesai! Kamu memahami posisi Anode dan Katode.');
+    labSkor(20, '🎉 Misi 4 selesai! Kamu memahami posisi anoda dan katoda.');
   } else {
     btn.classList.add('salah');
-    if (fb) { fb.className = 'feedback show no'; fb.textContent = 'Belum tepat. Elektrode tempat oksidasi (melepas elektron) adalah Anode, yaitu yang berada di kiri.'; }
+    if (fb) { fb.className = 'feedback show no'; fb.textContent = 'Belum tepat. Elektrode tempat oksidasi (melepas elektron) adalah anoda, yaitu yang berada di kiri.'; }
     sfx('salah'); efekSalahFlash();
   }
 }
@@ -416,12 +416,12 @@ function labJawabM5(i){
   const fb = $L('m5-fb');
   if (o.b) {
     btns[i].classList.add('benar');
-    if (fb) { fb.className = 'feedback show ok'; fb.textContent = 'Tepat! Notasi ditulis dari Anode ke Katode, sama dengan susunan alat di meja praktikum.'; }
+    if (fb) { fb.className = 'feedback show ok'; fb.textContent = 'Tepat! Notasi ditulis dari anoda ke katoda, sama dengan susunan alat di meja praktikum.'; }
     labS.misi[4] = true;
     labSkor(20, '🎉 Misi 5 selesai! Kamu menguasai notasi sel Volta.');
   } else {
     btns[i].classList.add('salah'); btns[i].disabled = true;
-    if (fb) { fb.className = 'feedback show no'; fb.textContent = 'Belum tepat. Ingat: notasi sel ditulis Anode | ion Anode ‖ ion Katode | Katode.'; }
+    if (fb) { fb.className = 'feedback show no'; fb.textContent = 'Belum tepat. Ingat: notasi sel ditulis anoda | ion anoda ‖ ion katoda | katoda.'; }
     sfx('salah'); efekSalahFlash();
   }
 }
@@ -433,7 +433,7 @@ function labCatat(){
   const item = document.createElement('div');
   item.className = 'lab-log-item';
   item.innerHTML = '<b>No. ' + labS.catatNo + '</b> · ⏱ ' + labS.waktu + ' dtk<br>' +
-    'Anode (−): ' + A.simbol + ' · Katode (+): ' + K.simbol + ' · E°sel = ' + labFmt(labS.E, true) + ' V · ' +
+    'ANODA (−): ' + A.simbol + ' · KATODA (+): ' + K.simbol + ' · E°sel = ' + labFmt(labS.E, true) + ' V · ' +
     (labS.aktif ? 'sel AKTIF (e⁻: ' + A.simbol + ' → ' + K.simbol + ')'
       : (labS.E > 0 ? 'reaksi spontan tetapi rangkaian belum aktif'
         : (labS.E < 0 ? 'tidak spontan' : 'tidak ada reaksi bersih'))) + '<br>' +
@@ -473,17 +473,17 @@ function labSelesai(){
   sfx('win');
 }
 
-/* Pewaktu: selama sel aktif, massa Anode berkurang dan Katode bertambah */
+/* Pewaktu: selama sel aktif, massa anoda berkurang dan katoda bertambah */
 setInterval(() => {
   if (!labS.aktif) return;
   labS.waktu++;
   labS.massa = Math.min(1, labS.massa + 0.0125);
   labPlates();
   const dm = $L('d-makro');
-  if (dm) dm.textContent = 'Arus mengalir · e⁻ bergerak dari Anode (' + labS.AN.simbol + ') ke Katode (' + labS.KA.simbol + ') · ⏱ ' + labS.waktu + ' dtk';
+  if (dm) dm.textContent = 'Arus mengalir · e⁻ bergerak dari anoda (' + labS.AN.simbol + ') ke katoda (' + labS.KA.simbol + ') · ⏱ ' + labS.waktu + ' dtk';
   if (labS.waktu === 8 && !labS.hintMakro) {
     labS.hintMakro = true;
-    labToast('👀 Amati: Anode menipis, Katode terlapisi endapan.');
+    labToast('👀 Amati: anoda menipis, katoda terlapisi endapan.');
   }
 }, 1000);
 
