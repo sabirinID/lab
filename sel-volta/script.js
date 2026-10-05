@@ -10,7 +10,7 @@ const CONFIG = {
   subUnit:  "Sel Volta / Sel Galvani",
   tp:       "Menganalisis prinsip kerja sel Volta, menentukan reaksi di anoda dan katoda, menghitung potensial sel (E°sel), serta merancang notasi sel Volta.",
   logo:     "./asset/img/logo.png",
-  bgJudul:  "./asset/img/bg_judul.jpg",
+  bgJudul:  "./asset/img/bg_judul.svg",
   profil: {
     nama:     "Syahril Dimas Sabirin, S.Si., Gr.",
     instansi: "SMA Islam Al Azhar 5 Cirebon",
@@ -40,37 +40,37 @@ const CONFIG = {
    #  BAGIAN B — DATA MATERI BELAJAR (7 HALAMAN)                #
    ############################################################## */
 const MATERI = [
-  { judul:"1. Mengenal Sel Volta", img:"./asset/img/materi_1.png",
+  { judul:"1. Mengenal Sel Volta", img:"./asset/img/materi_1.svg",
     intro:"Anak-anak, kita mulai dari gagasan utamanya: sel Volta mengubah energi kimia menjadi energi listrik.",
     isi:"<p><b>Sel Volta</b> atau <b>sel Galvani</b> adalah sel elektrokimia yang menghasilkan arus listrik dari reaksi redoks spontan.</p><ul><li>Reaksi oksidasi dan reduksi dipisahkan pada dua setengah sel.</li><li>Elektron mengalir melalui rangkaian luar.</li><li>Arus listrik muncul karena adanya beda potensial antara kedua elektrode.</li></ul>",
     kuis:{ tanya:"Perubahan energi utama pada sel Volta adalah ...", o:["kimia → listrik","listrik → kimia"], j:0 } },
 
-  { judul:"2. Komponen Sel Volta", img:"./asset/img/materi_2.png",
+  { judul:"2. Komponen Sel Volta", img:"./asset/img/materi_2.svg",
     intro:"Sekarang perhatikan komponen yang membuat reaksi redoks dapat menghasilkan aliran elektron secara teratur.",
     isi:"<p>Sebuah sel Volta tersusun atas <b>anoda</b>, <b>katoda</b>, larutan elektrolit, kawat penghantar, dan <b>jembatan garam</b>.</p><ul><li><b>Anoda</b>: tempat oksidasi.</li><li><b>Katoda</b>: tempat reduksi.</li><li><b>Kawat</b>: jalur aliran elektron.</li><li><b>Jembatan garam</b>: menjaga kenetralan muatan kedua setengah sel.</li></ul>",
     kuis:{ tanya:"Di elektrode manakah oksidasi berlangsung?", o:["Anoda","Katoda"], j:0 } },
 
-  { judul:"3. Anoda, Katoda, dan Arah Elektron", img:"./asset/img/materi_3.png",
+  { judul:"3. Anoda, Katoda, dan Arah Elektron", img:"./asset/img/materi_3.svg",
     intro:"Pak Sabirin ingin kalian mengingat alurnya, bukan sekadar menghafal istilahnya.",
     isi:"<p>Pada sel Volta, <b>anoda bermuatan negatif</b> dan <b>katoda bermuatan positif</b>.</p><ul><li>Oksidasi di anoda menghasilkan elektron.</li><li>Elektron bergerak melalui kawat dari <b>anoda → katoda</b>.</li><li>Di katoda, elektron digunakan dalam reaksi reduksi.</li></ul>",
     kuis:{ tanya:"Arah aliran elektron pada rangkaian luar adalah ...", o:["anoda → katoda","katoda → anoda"], j:0 } },
 
-  { judul:"4. Sel Daniell sebagai Contoh", img:"./asset/img/materi_4.png",
+  { judul:"4. Sel Daniell sebagai Contoh", img:"./asset/img/materi_4.svg",
     intro:"Mari kita gunakan pasangan Zn–Cu agar konsep anoda, katoda, dan reaksi redoks terlihat lebih konkret.",
     isi:"<p>Pada sel Daniell, elektrode Zn berada dalam larutan Zn²⁺ dan elektrode Cu berada dalam larutan Cu²⁺.</p><ul><li>Anoda: <b>Zn(s) → Zn²⁺(aq) + 2e⁻</b></li><li>Katoda: <b>Cu²⁺(aq) + 2e⁻ → Cu(s)</b></li><li>Reaksi total: <b>Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)</b></li></ul>",
     kuis:{ tanya:"Pada sel Zn–Cu, elektrode yang bertindak sebagai anoda adalah ...", o:["Zn","Cu"], j:0 } },
 
-  { judul:"5. Jembatan Garam dan Notasi Sel", img:"./asset/img/materi_5.png",
+  { judul:"5. Jembatan Garam dan Notasi Sel", img:"./asset/img/materi_5.svg",
     intro:"Tanpa jembatan garam, penumpukan muatan akan menghambat aliran elektron. Notasi sel membantu kita menuliskan susunan sel dengan ringkas.",
     isi:"<p>Jembatan garam memungkinkan migrasi ion tanpa mencampurkan kedua larutan secara langsung.</p><ul><li>Anion bergerak menuju kompartemen <b>anoda</b>.</li><li>Kation bergerak menuju kompartemen <b>katoda</b>.</li><li>Notasi umum: <b>anoda | ion anoda || ion katoda | katoda</b>.</li><li>Contoh: <b>Zn(s) | Zn²⁺(aq) || Cu²⁺(aq) | Cu(s)</b>.</li></ul>",
     kuis:{ tanya:"Dalam notasi sel, komponen anoda ditulis di sebelah ...", o:["kiri","kanan"], j:0 } },
 
-  { judul:"6. Potensial Sel dan Spontanitas", img:"./asset/img/materi_6.png",
+  { judul:"6. Potensial Sel dan Spontanitas", img:"./asset/img/materi_6.svg",
     intro:"Terakhir, kita gunakan data potensial reduksi untuk mengetahui besarnya tegangan dan menilai spontanitas reaksi.",
     isi:"<p>Potensial sel standar dihitung menggunakan:</p><p style='font-size:25px;text-align:center;'><b>E°sel = E°katoda − E°anoda</b></p><ul><li>Gunakan nilai <b>potensial reduksi standar</b> dari tabel.</li><li>Jika <b>E°sel &gt; 0</b>, reaksi spontan pada kondisi standar.</li><li>Untuk Zn–Cu: E°sel = (+0,34) − (−0,76) = <b>+1,10 V</b>.</li></ul>",
     kuis:{ tanya:"Jika E°sel bernilai positif, reaksi sel secara termodinamika bersifat ...", o:["spontan","tidak spontan"], j:0 } },
 
-  { judul:"7. Kesimpulan", img:"./asset/img/materi_7.png",
+  { judul:"7. Kesimpulan", img:"./asset/img/materi_7.svg",
     intro:"Bagus, anak-anak. Sekarang rangkumlah Sel Volta sebagai satu alur sebab-akibat yang utuh.",
     isi:"<ul><li>Sel Volta menghasilkan listrik dari <b>reaksi redoks spontan</b>.</li><li><b>Oksidasi</b> terjadi di anoda dan <b>reduksi</b> terjadi di katoda.</li><li>Elektron mengalir dari <b>anoda menuju katoda</b> melalui rangkaian luar.</li><li>Jembatan garam menjaga kenetralan muatan dengan migrasi ion.</li><li>Notasi sel ditulis dari anoda ke katoda.</li><li><b>E°sel positif</b> menunjukkan reaksi spontan pada kondisi standar.</li></ul><p><b>Pesan Pak Sabirin:</b> jika kalian memahami arah elektron dan perubahan yang terjadi pada tiap elektrode, kalian tidak perlu menghafal konsep Sel Volta secara terpisah-pisah. Setelah ini, kunjungi <b>Lab Maya</b> untuk merakit sel Voltamu sendiri!</p>"
   }
