@@ -1,6 +1,6 @@
 # Virtual Lab Kimia
 
-Landing page dan dua topik praktikum virtual (Lab Maya).
+Landing page dan tiga topik praktikum virtual (Lab Maya).
 
 ## Struktur
 
@@ -8,6 +8,7 @@ Landing page dan dua topik praktikum virtual (Lab Maya).
 - `assets/` : logo, foto, dan cuplikan layar kedua lab
 - `sel-volta/` : Media Pembelajaran dan Lab Maya Sel Volta
 - `sel-elektrolisis/` : Media Pembelajaran dan Lab Maya Sel Elektrolisis
+- `sifat-koligatif/` : Media Pembelajaran dan Lab Maya Sifat Koligatif Larutan
 
 ## Menambah topik baru
 
