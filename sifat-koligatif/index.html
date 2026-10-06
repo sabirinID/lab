@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sifat Koligatif Larutan | Media Pembelajaran Interaktif dan Lab Maya</title>
+<meta name="description" content="Media pembelajaran interaktif Sifat Koligatif Larutan untuk Kimia Kelas XII: materi, permainan, praktikum virtual Lab Maya, dan latihan soal.">
+<meta name="theme-color" content="#0E2240">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E2240'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%23FFC21A' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23F26A21'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>window.__imgq=[];function imgErr(el){window.__imgq.push(el);}</script>
+</head>
+<body>
+<div id="viewport">
+  <div id="stage">
+    <div id="efek-salah"></div>
+
+    <!-- Audio: efek suara + musik latar -->
+    <audio id="bgm" loop preload="auto"></audio>
+    <div id="audio-dock">
+      <div id="audio-widget">
+        <button class="icon-btn-small" id="sound-toggle" data-sfx="no" onclick="toggleSound()" title="Efek suara" aria-label="Efek suara">🔊</button>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="1" oninput="changeVolume(this.value)" title="Volume efek suara" aria-label="Volume efek suara">
+      </div>
+      <div id="bgm-widget">
+        <button id="btn-bgm" onclick="toggleBacksound()" title="Musik latar: mati, klik untuk menyalakan" aria-label="Musik latar">🔇</button>
+        <input type="range" id="bgm-volume" min="0" max="100" value="50" oninput="ubahVolumeBacksound(this.value)" title="Volume musik latar" aria-label="Volume musik latar">
+      </div>
+    </div>
+
+    <!-- ============ LAYAR JUDUL ============ -->
+    <section id="scr-judul" class="screen active">
+      <div class="bg" aria-hidden="true"><svg class="judul-atom" viewBox="0 0 400 400" aria-hidden="true"><g class="shell s1"><circle cx="200" cy="200" r="70"/><circle class="e" cx="270.0" cy="200.0" r="3.2"/><circle class="e" cx="130.0" cy="200.0" r="3.2"/></g><g class="shell s2"><circle cx="200" cy="200" r="100"/><circle class="e" cx="292.4" cy="238.3" r="3.2"/><circle class="e" cx="238.3" cy="292.4" r="3.2"/><circle class="e" cx="161.7" cy="292.4" r="3.2"/><circle class="e" cx="107.6" cy="238.3" r="3.2"/><circle class="e" cx="107.6" cy="161.7" r="3.2"/><circle class="e" cx="161.7" cy="107.6" r="3.2"/><circle class="e" cx="238.3" cy="107.6" r="3.2"/><circle class="e" cx="292.4" cy="161.7" r="3.2"/></g><g class="shell s3"><circle cx="200" cy="200" r="132"/><circle class="e" cx="332.0" cy="200.0" r="3.2"/><circle class="e" cx="324.0" cy="245.1" r="3.2"/><circle class="e" cx="301.1" cy="284.8" r="3.2"/><circle class="e" cx="266.0" cy="314.3" r="3.2"/><circle class="e" cx="222.9" cy="330.0" r="3.2"/><circle class="e" cx="177.1" cy="330.0" r="3.2"/><circle class="e" cx="134.0" cy="314.3" r="3.2"/><circle class="e" cx="98.9" cy="284.8" r="3.2"/><circle class="e" cx="76.0" cy="245.1" r="3.2"/><circle class="e" cx="68.0" cy="200.0" r="3.2"/><circle class="e" cx="76.0" cy="154.9" r="3.2"/><circle class="e" cx="98.9" cy="115.2" r="3.2"/><circle class="e" cx="134.0" cy="85.7" r="3.2"/><circle class="e" cx="177.1" cy="70.0" r="3.2"/><circle class="e" cx="222.9" cy="70.0" r="3.2"/><circle class="e" cx="266.0" cy="85.7" r="3.2"/><circle class="e" cx="301.1" cy="115.2" r="3.2"/><circle class="e" cx="324.0" cy="154.9" r="3.2"/></g><g class="shell s4"><circle cx="200" cy="200" r="165"/><circle class="e" cx="362.5" cy="228.7" r="3.2"/><circle class="e" cx="342.9" cy="282.5" r="3.2"/><circle class="e" cx="306.1" cy="326.4" r="3.2"/><circle class="e" cx="256.4" cy="355.0" r="3.2"/><circle class="e" cx="200.0" cy="365.0" r="3.2"/><circle class="e" cx="143.6" cy="355.0" r="3.2"/><circle class="e" cx="93.9" cy="326.4" r="3.2"/><circle class="e" cx="57.1" cy="282.5" r="3.2"/><circle class="e" cx="37.5" cy="228.7" r="3.2"/><circle class="e" cx="37.5" cy="171.3" r="3.2"/><circle class="e" cx="57.1" cy="117.5" r="3.2"/><circle class="e" cx="93.9" cy="73.6" r="3.2"/><circle class="e" cx="143.6" cy="45.0" r="3.2"/><circle class="e" cx="200.0" cy="35.0" r="3.2"/><circle class="e" cx="256.4" cy="45.0" r="3.2"/><circle class="e" cx="306.1" cy="73.6" r="3.2"/><circle class="e" cx="342.9" cy="117.5" r="3.2"/><circle class="e" cx="362.5" cy="171.3" r="3.2"/></g><g class="shell s5"><circle cx="200" cy="200" r="196"/><circle class="e gold" cx="200.0" cy="4.0" r="3.2"/><circle class="e gold" cx="386.4" cy="139.4" r="3.2"/><circle class="e gold" cx="315.2" cy="358.6" r="3.2"/><circle class="e gold" cx="84.8" cy="358.6" r="3.2"/><circle class="e gold" cx="13.6" cy="139.4" r="3.2"/></g></svg></div>
+      <div class="judul-topleft"><a class="home-section-btn" href="../index.html">← Virtual Lab</a></div>
+      <div class="judul-topright">
+        <button class="home-section-btn" data-sfx onclick="openModal('modal-info')">Data Pelajaran</button>
+        <button class="home-section-btn" data-sfx onclick="openModal('modal-dev')">Profil</button>
+        <button class="home-section-btn" data-sfx onclick="openModal('modal-ref')">Referensi</button>
+      </div>
+      <div class="judul-grid">
+        <div class="judul-text">
+          <p class="judul-eyebrow">Media Pembelajaran Interaktif &nbsp;|&nbsp; Kimia Fase F</p>
+          <h1 class="judul-utama" id="cfg-judul">Judul Materi</h1>
+          <p class="judul-sub" id="cfg-subjudul">Sub Judul Materi</p>
+          <ul class="judul-chips" aria-label="Isi media">
+            <li>Belajar</li><li>Bermain</li><li>Lab Maya</li><li>Berlatih</li>
+          </ul>
+          <button class="btn mulai-btn" data-sfx onclick="openModal('modal-login')">▶ MULAI</button>
+        </div>
+        <figure class="judul-visual">
+          <img id="cfg-bgjudul" src="./asset/img/bg_judul.svg" alt="Ilustrasi perbandingan air murni dan larutan: titik didih naik dan tekanan uap turun" onerror="imgErr(this)">
+          <figcaption>Air murni vs larutan: Tb naik, Tf turun, P turun</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ LAYAR MENU ============ -->
+    <section id="scr-menu" class="screen">
+      <div class="bg"></div>
+      <div class="topbar">
+        <div class="judul-bar"><span id="cfg-judul-menu">Judul Materi</span><small>Pilih kegiatan belajar kalian</small></div>
+        <div class="spacer"></div>
+        <button class="icon-btn" data-sfx onclick="goJudul()" title="Beranda" aria-label="Beranda">⌂</button>
+      </div>
+      <div class="menu-head">
+        <h2>Anak-anak, mari kita mulai pembelajaran!</h2>
+        <p>Pak Sabirin menyarankan urutan ini: mulai dari <b>Belajar</b>, lanjut ke <b>Bermain</b>, lakukan praktikum di <b>Lab Maya</b>, lalu akhiri dengan <b>Berlatih</b>.</p>
+      </div>
+      <div class="menu-cards empat">
+        <button class="menu-card mc-belajar" data-sfx onclick="startBelajar()">
+          <img src="./asset/img/menu_belajar.png" class="img-ikon" alt="" onerror="imgErr(this)">
+          <div class="mc-judul">Belajar</div>
+          <div class="mc-sub">Materi Pembelajaran</div>
+        </button>
+        <button class="menu-card mc-bermain" data-sfx onclick="startBermain()">
+          <img src="./asset/img/menu_bermain.png" class="img-ikon" alt="" onerror="imgErr(this)">
+          <div class="mc-judul">Bermain</div>
+          <div class="mc-sub">10 Permainan Interaktif</div>
+        </button>
+        <button class="menu-card mc-lab" data-sfx onclick="startLabMaya()">
+          <div class="lab-ikon-emoji" aria-hidden="true">🔬</div>
+          <div class="mc-judul">Lab Maya</div>
+          <div class="mc-sub">Bandingkan Air dan Larutan</div>
+        </button>
+        <button class="menu-card mc-berlatih" data-sfx onclick="startBerlatih()">
+          <img src="./asset/img/menu_berlatih.png" class="img-ikon" alt="" onerror="imgErr(this)">
+          <div class="mc-judul">Berlatih</div>
+          <div class="mc-sub">10 Soal Evaluasi</div>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ LAYAR BELAJAR ============ -->
+    <section id="scr-belajar" class="screen">
+      <div class="bg"></div>
+      <div class="topbar">
+        <div class="judul-bar">Belajar<small id="belajar-sub">Materi</small></div>
+        <div class="spacer"></div>
+        <div class="progress-wrap"><span class="progress-label" id="belajar-plabel">1/7</span><div class="progress-track"><div class="progress-fill" id="belajar-pfill"></div></div></div>
+        <button class="icon-btn" data-sfx onclick="goMenu()" title="Menu" aria-label="Menu">☰</button>
+      </div>
+      <div class="content" id="belajar-content"></div>
+      <div class="navbar">
+        <button class="nav-btn nav-back" id="belajar-prev" data-sfx onclick="belajarPrev()">◀ Sebelumnya</button>
+        <button class="nav-btn nav-next" id="belajar-next" data-sfx onclick="belajarNext()">Selanjutnya ▶</button>
+      </div>
+    </section>
+
+    <!-- ============ LAYAR BERMAIN ============ -->
+    <section id="scr-bermain" class="screen">
+      <div class="bg"></div>
+      <div class="topbar">
+        <div class="judul-bar">Bermain<small id="bermain-sub">Aktivitas Interaktif</small></div>
+        <div class="spacer"></div>
+        <div class="skor-badge">🏆 Skor: <span id="skor-bermain-angka">0</span></div>
+        <div class="progress-wrap" style="margin-left:10px"><span class="progress-label" id="bermain-plabel">1/10</span><div class="progress-track" style="width:120px"><div class="progress-fill" id="bermain-pfill"></div></div></div>
+        <button class="icon-btn" data-sfx onclick="goMenu()" title="Menu" aria-label="Menu">☰</button>
+      </div>
+      <div class="content" id="bermain-content"></div>
+      <div class="navbar">
+        <button class="nav-btn nav-back" id="bermain-prev" data-sfx onclick="bermainPrev()">◀ Sebelumnya</button>
+        <button class="nav-btn nav-next" id="bermain-next" data-sfx onclick="bermainNext()" disabled>Selanjutnya ▶</button>
+      </div>
+    </section>
+
+    <!-- ============ LAYAR BERLATIH ============ -->
+    <section id="scr-berlatih" class="screen">
+      <div class="bg"></div>
+      <div class="topbar">
+        <div class="judul-bar">Berlatih<small id="berlatih-sub">Uji Pemahaman</small></div>
+        <div class="spacer"></div>
+        <div class="skor-badge">🏆 Skor: <span id="skor-berlatih-angka">0</span></div>
+        <div class="progress-wrap" style="margin-left:10px"><span class="progress-label" id="berlatih-plabel">1/10</span><div class="progress-track" style="width:160px"><div class="progress-fill" id="berlatih-pfill"></div></div></div>
+        <button class="icon-btn" data-sfx onclick="goMenu()" title="Menu" aria-label="Menu">☰</button>
+      </div>
+      <div class="content" id="berlatih-content"></div>
+      <div class="navbar">
+        <button class="nav-btn nav-back" id="berlatih-prev" data-sfx onclick="berlatihPrev()">◀ Sebelumnya</button>
+        <button class="nav-btn nav-next" id="berlatih-next" data-sfx onclick="berlatihNext()" disabled>Selanjutnya ▶</button>
+      </div>
+    </section>
+
+    <!-- ============ LAYAR LAB MAYA ============ -->
+    <section id="scr-lab" class="screen">
+      <div class="bg"></div>
+      <div class="topbar">
+        <div class="judul-bar">Lab Maya<small>Praktikum Virtual Sifat Koligatif</small></div>
+        <div class="spacer"></div>
+        <div class="lab-badge-misi">🎯 Misi: <span id="lab-misi-count">0/5</span></div>
+        <div class="skor-badge">🏆 Skor: <span id="lab-skor-angka">0</span></div>
+        <button class="icon-btn" data-sfx onclick="goMenu()" title="Menu" aria-label="Menu">☰</button>
+      </div>
+      <div class="content lab-content">
+        <div class="lab-toast" id="lab-toast" role="status" aria-live="polite"></div>
+        <div class="lab-wrap">
+
+          <!-- MEJA PRAKTIKUM -->
+          <div class="lab-bench">
+            <div class="lab-bench-head">
+              <span class="lab-bench-title">Meja Praktikum</span>
+              <button class="lab-mode" id="lab-mode" data-sfx onclick="labToggleMikro()" aria-pressed="false">🔬 Mode Partikel: mati</button>
+              <span class="lab-status off" id="lab-status">Siap dijalankan</span>
+            </div>
+            <div class="lab-stage" id="lab-stage">
+              <svg id="lab-svg" viewBox="0 0 744 496" role="img" aria-label="Perbandingan air murni dan larutan pada percobaan tekanan uap, titik didih, titik beku, dan osmosis">
+                <defs>
+                  <radialGradient id="bgStage" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="#1B3A6B"/><stop offset="1" stop-color="#0E2240"/></radialGradient>
+                  <radialGradient id="heatGrad"><stop offset="0" stop-color="#FF9A3C" stop-opacity=".85"/><stop offset="1" stop-color="#FF9A3C" stop-opacity="0"/></radialGradient>
+                  <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                  <clipPath id="clipVL"><path d="M100,250 H280 V404 Q280,418 266,418 H114 Q100,418 100,404 Z"/></clipPath>
+                  <clipPath id="clipVR"><path d="M464,250 H644 V404 Q644,418 630,418 H478 Q464,418 464,404 Z"/></clipPath>
+                  <clipPath id="clipOsm"><path d="M240,190 H300 V384 H444 V190 H504 V412 H240 Z"/></clipPath>
+                </defs>
+                <rect width="744" height="496" fill="url(#bgStage)"/>
+                <g fill="none" stroke="#fff" stroke-opacity=".05" stroke-width="1.5">
+                  <circle cx="372" cy="250" r="150"/><circle cx="372" cy="250" r="215"/><circle cx="372" cy="250" r="280"/><circle cx="372" cy="250" r="345"/>
+                </g>
+                <rect x="24" y="420" width="696" height="13" rx="6.5" fill="#1D3C6E"/>
+                <rect x="24" y="420" width="696" height="3.5" rx="1.75" fill="#3B6CB3"/>
+
+                <!-- ========== MEJA PERBANDINGAN: tekanan uap, didih, beku ========== -->
+                <g id="scVes">
+                <g id="vL">
+                  <g clip-path="url(#clipVL)">
+                    <rect id="solL" x="100" y="330" width="180" height="90" style="fill:var(--solL)"/>
+                    <g transform="translate(94,0)"><g class="wave"><path d="M0,330 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 V340 H0 Z" style="fill:var(--solL)"/></g></g>
+                    <rect id="iceOvL" x="100" y="330" width="180" height="90" fill="#EAF6FF" opacity="0"/>
+                    <g id="wL"></g><g id="sL"></g><g id="vpL"></g><g id="iceL"></g><g id="bubL"></g>
+                  </g>
+                  <path class="lab-glass" d="M98,250 V404 Q98,420 114,420 H266 Q282,420 282,404 V250"/>
+                  <path d="M90,250 H98 M282,250 H290" stroke="rgba(255,255,255,.62)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M112,262 V396" stroke="#fff" stroke-opacity=".22" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+                  <!-- tutup + alat ukur tekanan (mode tekanan uap) -->
+                  <g id="lidL" opacity="0" style="transition:opacity .4s">
+                    <rect x="96" y="238" width="188" height="12" rx="3" fill="#3A557F" stroke="#9FB2D4" stroke-width="1.5"/>
+                    <rect x="185" y="176" width="10" height="62" fill="#7F96BD"/>
+                    <circle cx="190" cy="128" r="48" fill="#0A1830" stroke="#3E5E94" stroke-width="3"/>
+                    <g stroke="#7F96BD" stroke-width="1.6"><line x1="152.8" y1="149.5" x2="158.0" y2="146.5"/><line x1="147.7" y1="120.5" x2="153.6" y2="121.6"/><line x1="162.4" y1="95.1" x2="166.2" y2="99.7"/><line x1="190.0" y1="85.0" x2="190.0" y2="91.0"/><line x1="217.6" y1="95.1" x2="213.8" y2="99.7"/><line x1="232.3" y1="120.5" x2="226.4" y2="121.6"/><line x1="227.2" y1="149.5" x2="222.0" y2="146.5"/></g><text x="163.2" y="146.5" text-anchor="middle" class="lab-txt" style="font-size:8px">0</text><text x="170.1" y="107.3" text-anchor="middle" class="lab-txt" style="font-size:8px">10</text><text x="209.9" y="107.3" text-anchor="middle" class="lab-txt" style="font-size:8px">20</text><text x="216.8" y="146.5" text-anchor="middle" class="lab-txt" style="font-size:8px">30</text>
+                    <text class="lab-txt" x="190" y="170" text-anchor="middle" style="font-size:8.5px">mmHg</text>
+                    <line id="needleL" x1="190" y1="128" x2="190" y2="94" stroke="#FFC21A" stroke-width="2.8" stroke-linecap="round" style="transform-origin:190px 128px;transition:transform .9s cubic-bezier(.34,1.3,.64,1);transform:rotate(-120deg)"/>
+                    <circle cx="190" cy="128" r="4.5" fill="#FFC21A"/>
+                    <text id="gTL" x="190" y="152" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="11.5" font-weight="800" fill="#4ADE80">0,0</text>
+                  </g>
+
+                  <!-- termometer (mode titik didih dan titik beku) -->
+                  <g id="thL" opacity="0" style="transition:opacity .4s">
+                    <rect x="242" y="170" width="12" height="230" rx="6" fill="#fff" fill-opacity=".92" stroke="#0E2240" stroke-width="2"/>
+                    <rect id="hgL" x="245" y="396" width="6" height="4" rx="3" fill="#E04B4B"/>
+                    <circle cx="248" cy="404" r="10" fill="#E04B4B" stroke="#0E2240" stroke-width="2"/>
+                    <text id="tTL" x="184" y="222" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="22" font-weight="800" fill="#fff" stroke="rgba(8,20,42,.7)" stroke-width="3" paint-order="stroke">25,0 °C</text>
+                  </g>
+                  <g id="heatL" opacity="0" style="transition:opacity .5s">
+                    <ellipse cx="190" cy="430" rx="100" ry="14" fill="url(#heatGrad)"/>
+                    <g fill="#F26A21"><path d="M156,440 C144,456 152,464 156,474 C160,464 168,456 156,440Z"/><path d="M190,440 C178,456 186,464 190,474 C194,464 202,456 190,440Z"/><path d="M224,440 C212,456 220,464 224,474 C228,464 236,456 224,440Z"/></g>
+                    <g fill="#FFC21A"><path d="M190,452 C185,460 188,466 190,474 C192,466 195,460 190,452Z"/></g>
+                  </g>
+                  <rect id="pillL" x="86" y="22" width="208" height="26" rx="13" fill="#25508C"/>
+                  <text id="pillTL" x="190" y="39.5" text-anchor="middle" class="lab-pill-txt" fill="#fff">AIR MURNI</text>
+                  <text id="subL" x="190" y="490" text-anchor="middle" class="lab-rx" style="font-size:12.5px">100 g air</text>
+                </g>
+                
+                <g id="vR">
+                  <g clip-path="url(#clipVR)">
+                    <rect id="solR" x="464" y="330" width="180" height="90" style="fill:var(--solR)"/>
+                    <g transform="translate(458,0)"><g class="wave"><path d="M0,330 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 q15,-5 30,0 t30,0 V340 H0 Z" style="fill:var(--solR)"/></g></g>
+                    <rect id="iceOvR" x="464" y="330" width="180" height="90" fill="#EAF6FF" opacity="0"/>
+                    <g id="wR"></g><g id="sR"></g><g id="vpR"></g><g id="iceR"></g><g id="bubR"></g>
+                  </g>
+                  <path class="lab-glass" d="M462,250 V404 Q462,420 478,420 H630 Q646,420 646,404 V250"/>
+                  <path d="M454,250 H462 M646,250 H654" stroke="rgba(255,255,255,.62)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M476,262 V396" stroke="#fff" stroke-opacity=".22" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+                  <!-- tutup + alat ukur tekanan (mode tekanan uap) -->
+                  <g id="lidR" opacity="0" style="transition:opacity .4s">
+                    <rect x="460" y="238" width="188" height="12" rx="3" fill="#3A557F" stroke="#9FB2D4" stroke-width="1.5"/>
+                    <rect x="549" y="176" width="10" height="62" fill="#7F96BD"/>
+                    <circle cx="554" cy="128" r="48" fill="#0A1830" stroke="#3E5E94" stroke-width="3"/>
+                    <g stroke="#7F96BD" stroke-width="1.6"><line x1="516.8" y1="149.5" x2="522.0" y2="146.5"/><line x1="511.7" y1="120.5" x2="517.6" y2="121.6"/><line x1="526.4" y1="95.1" x2="530.2" y2="99.7"/><line x1="554.0" y1="85.0" x2="554.0" y2="91.0"/><line x1="581.6" y1="95.1" x2="577.8" y2="99.7"/><line x1="596.3" y1="120.5" x2="590.4" y2="121.6"/><line x1="591.2" y1="149.5" x2="586.0" y2="146.5"/></g><text x="527.2" y="146.5" text-anchor="middle" class="lab-txt" style="font-size:8px">0</text><text x="534.1" y="107.3" text-anchor="middle" class="lab-txt" style="font-size:8px">10</text><text x="573.9" y="107.3" text-anchor="middle" class="lab-txt" style="font-size:8px">20</text><text x="580.8" y="146.5" text-anchor="middle" class="lab-txt" style="font-size:8px">30</text>
+                    <text class="lab-txt" x="554" y="170" text-anchor="middle" style="font-size:8.5px">mmHg</text>
+                    <line id="needleR" x1="554" y1="128" x2="554" y2="94" stroke="#FFC21A" stroke-width="2.8" stroke-linecap="round" style="transform-origin:554px 128px;transition:transform .9s cubic-bezier(.34,1.3,.64,1);transform:rotate(-120deg)"/>
+                    <circle cx="554" cy="128" r="4.5" fill="#FFC21A"/>
+                    <text id="gTR" x="554" y="152" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="11.5" font-weight="800" fill="#4ADE80">0,0</text>
+                  </g>
+
+                  <!-- termometer (mode titik didih dan titik beku) -->
+                  <g id="thR" opacity="0" style="transition:opacity .4s">
+                    <rect x="606" y="170" width="12" height="230" rx="6" fill="#fff" fill-opacity=".92" stroke="#0E2240" stroke-width="2"/>
+                    <rect id="hgR" x="609" y="396" width="6" height="4" rx="3" fill="#E04B4B"/>
+                    <circle cx="612" cy="404" r="10" fill="#E04B4B" stroke="#0E2240" stroke-width="2"/>
+                    <text id="tTR" x="548" y="222" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="22" font-weight="800" fill="#fff" stroke="rgba(8,20,42,.7)" stroke-width="3" paint-order="stroke">25,0 °C</text>
+                  </g>
+                  <g id="heatR" opacity="0" style="transition:opacity .5s">
+                    <ellipse cx="554" cy="430" rx="100" ry="14" fill="url(#heatGrad)"/>
+                    <g fill="#F26A21"><path d="M520,440 C508,456 516,464 520,474 C524,464 532,456 520,440Z"/><path d="M554,440 C542,456 550,464 554,474 C558,464 566,456 554,440Z"/><path d="M588,440 C576,456 584,464 588,474 C592,464 600,456 588,440Z"/></g>
+                    <g fill="#FFC21A"><path d="M554,452 C549,460 552,466 554,474 C556,466 559,460 554,452Z"/></g>
+                  </g>
+                  <rect id="pillR" x="450" y="22" width="208" height="26" rx="13" fill="#25508C"/>
+                  <text id="pillTR" x="554" y="39.5" text-anchor="middle" class="lab-pill-txt" fill="#fff">AIR MURNI</text>
+                  <text id="subR" x="554" y="490" text-anchor="middle" class="lab-rx" style="font-size:12.5px">100 g air</text>
+                </g>
+                  <g id="cmp">
+                    <rect x="300" y="200" width="144" height="182" rx="14" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+                    <text id="cmpTitle" x="372" y="222" text-anchor="middle" class="lab-txt" style="font-size:10.5px">TEKANAN UAP</text>
+                    <text class="lab-txt" x="312" y="248" style="font-size:10px">Murni</text>
+                    <text id="cmpAv" x="432" y="248" text-anchor="end" font-size="10.5" font-weight="800" fill="#9CC2F5" font-family="Figtree,sans-serif">23,8</text>
+                    <rect id="cmpAb" x="312" y="254" width="100" height="10" rx="5" fill="#25508C"/>
+                    <text class="lab-txt" x="312" y="288" style="font-size:10px">Larutan</text>
+                    <text id="cmpBv" x="432" y="288" text-anchor="end" font-size="10.5" font-weight="800" fill="#FFB27A" font-family="Figtree,sans-serif">23,8</text>
+                    <rect id="cmpBb" x="312" y="294" width="100" height="10" rx="5" fill="#F26A21"/>
+                    <line x1="312" y1="318" x2="432" y2="318" stroke="rgba(255,255,255,.2)"/>
+                    <text id="cmpD" x="372" y="342" text-anchor="middle" font-size="16" font-weight="800" fill="#FFC21A" font-family="Fraunces,Georgia,serif">ΔP = 0</text>
+                    <text id="cmpD2" x="372" y="360" text-anchor="middle" font-size="10" font-weight="700" fill="#AEC0E0" font-family="Figtree,sans-serif">selisih diperbesar</text>
+                  </g>
+                </g>
+
+                <!-- ========== OSMOSIS ========== -->
+                <g id="scOsm" style="display:none">
+                  <circle cx="372" cy="104" r="48" fill="#0A1830" stroke="#3E5E94" stroke-width="3"/>
+                  <g stroke="#7F96BD" stroke-width="1.6"><line x1="334.8" y1="125.5" x2="340.0" y2="122.5"/><line x1="329.7" y1="96.5" x2="335.6" y2="97.6"/><line x1="344.4" y1="71.1" x2="348.2" y2="75.7"/><line x1="372.0" y1="61.0" x2="372.0" y2="67.0"/><line x1="399.6" y1="71.1" x2="395.8" y2="75.7"/><line x1="414.3" y1="96.5" x2="408.4" y2="97.6"/><line x1="409.2" y1="125.5" x2="404.0" y2="122.5"/></g><text x="345.2" y="122.5" text-anchor="middle" class="lab-txt" style="font-size:8px">0</text><text x="352.1" y="83.3" text-anchor="middle" class="lab-txt" style="font-size:8px">50</text><text x="391.9" y="83.3" text-anchor="middle" class="lab-txt" style="font-size:8px">100</text><text x="398.8" y="122.5" text-anchor="middle" class="lab-txt" style="font-size:8px">150</text>
+                  <text class="lab-txt" x="372" y="146" text-anchor="middle" style="font-size:8.5px">atm</text>
+                  <line id="needleO" x1="372" y1="104" x2="372" y2="70" stroke="#FFC21A" stroke-width="2.8" stroke-linecap="round" style="transform-origin:372px 104px;transition:transform .9s cubic-bezier(.34,1.3,.64,1);transform:rotate(-120deg)"/>
+                  <circle cx="372" cy="104" r="4.5" fill="#FFC21A"/>
+                  <text id="gTO" x="372" y="128" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="11.5" font-weight="800" fill="#4ADE80">0,0</text>
+                  <text class="lab-txt" x="372" y="30" text-anchor="middle" style="font-size:10px">TEKANAN OSMOTIK  π</text>
+
+                  <g clip-path="url(#clipOsm)">
+                    <rect id="oLa" x="240" y="300" width="60" height="112" style="fill:var(--solL)"/>
+                    <rect x="240" y="384" width="132" height="28" style="fill:var(--solL)"/>
+                    <rect id="oRa" x="444" y="300" width="60" height="112" style="fill:var(--solR)"/>
+                    <rect x="372" y="384" width="132" height="28" style="fill:var(--solR)"/>
+                    <g id="owL"></g><g id="owR"></g><g id="osR"></g>
+                  </g>
+                  <line x1="372" y1="378" x2="372" y2="416" stroke="#FFC21A" stroke-width="5" stroke-dasharray="5 4"/>
+                  <text class="lab-txt" x="372" y="372" text-anchor="middle" style="font-size:9px;fill:#FFC21A">MEMBRAN</text>
+                  <path class="lab-glass" d="M232,184 V420 H512 V184" fill="none"/>
+                  <path class="lab-glass" d="M308,184 V376 H436 V184" fill="none"/>
+                  <path d="M224,184 H232 M308,184 H316 M428,184 H436 M512,184 H520" stroke="rgba(255,255,255,.62)" stroke-width="3" stroke-linecap="round"/>
+                  <g id="flow" opacity="0" style="transition:opacity .4s">
+                    <g class="flow-a"><path d="M330,398 H356" stroke="#7FC4FF" stroke-width="3" stroke-linecap="round"/><path d="M352,393 L360,398 L352,403" fill="none" stroke="#7FC4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+                    <g class="flow-a" style="animation-delay:.4s"><path d="M384,398 H410" stroke="#7FC4FF" stroke-width="3" stroke-linecap="round"/><path d="M406,393 L414,398 L406,403" fill="none" stroke="#7FC4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+                  </g>
+                  <line id="oLnL" x1="224" y1="300" x2="316" y2="300" stroke="#AEC0E0" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <line id="oLnR" x1="428" y1="300" x2="540" y2="300" stroke="#AEC0E0" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <g id="oBr" opacity="0" style="transition:opacity .4s">
+                    <line id="oBrL" x1="532" y1="300" x2="532" y2="300" stroke="#FFC21A" stroke-width="3"/>
+                    <text id="oBrT" x="542" y="304" font-size="13" font-weight="800" fill="#FFC21A" font-family="Figtree,sans-serif">h</text>
+                  </g>
+                  <rect x="170" y="440" width="200" height="26" rx="13" fill="#25508C"/>
+                  <text class="lab-pill-txt" x="270" y="457.5" text-anchor="middle" fill="#fff">AIR MURNI</text>
+                  <rect x="408" y="440" width="132" height="26" rx="13" fill="#F26A21"/>
+                  <text id="oPillR" class="lab-pill-txt" x="474" y="457.5" text-anchor="middle" fill="#fff">LARUTAN</text>
+                  <text id="oSub" x="372" y="488" text-anchor="middle" class="lab-rx" style="font-size:12.5px">Tambahkan zat terlarut</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- PANEL KONTROL -->
+          <div class="lab-panel">
+            <div class="lab-tabs" role="tablist">
+              <button class="lab-tab active" data-tab="rakit" data-sfx onclick="labTab('rakit')">🧰 Rakit</button>
+              <button class="lab-tab" data-tab="data" data-sfx onclick="labTab('data')">📊 Data</button>
+              <button class="lab-tab" data-tab="misi" data-sfx onclick="labTab('misi')">🎯 Misi</button>
+            </div>
+
+            <div class="lab-tab-body" id="tab-rakit" style="display:flex">
+              <div class="lab-sec">
+                <div class="lab-sec-title">🔬 Eksperimen</div>
+                <div class="mode-grid" id="grid-mode"></div>
+              </div>
+              <div class="lab-sec">
+                <div class="lab-sec-title">🧪 Zat terlarut <span class="lab-sec-note">i = faktor van't Hoff</span></div>
+                <div class="zat-grid" id="grid-zat"></div>
+              </div>
+              <div class="lab-sec">
+                <div class="lab-sec-title">⚖️ Massa zat <span class="lab-sec-note">dalam 100 g air</span></div>
+                <div class="massa-grid" id="grid-massa"></div>
+              </div>
+              <button class="lab-run-btn" id="run-btn" data-sfx onclick="labJalankan()">▶ Jalankan</button>
+              <button class="lab-reset-btn" data-sfx onclick="labReset()">🔄 Reset Praktikum</button>
+            </div>
+
+            <div class="lab-tab-body" id="tab-data" style="display:none">
+              <div class="lab-sec"><div class="lab-sec-title">🧪 Larutan yang dibuat</div><div id="d-zat"></div></div>
+              <div class="lab-sec"><div class="lab-sec-title" id="d-hasil-t">Perhitungan</div><div id="d-hasil"></div></div>
+              <div class="lab-sec"><div class="lab-sec-title">📐 Konstanta</div><div class="lab-note" id="d-const"></div></div>
+              <div class="lab-sec"><div class="lab-sec-title">🔎 Pengamatan</div><div class="lab-makro" id="d-amati"></div></div>
+              <button class="lab-reset-btn" data-sfx onclick="labCatat()">📓 Catat Pengamatan ke LKPD</button>
+              <div class="lab-log" id="lab-log"></div>
+            </div>
+
+            <div class="lab-tab-body" id="tab-misi" style="display:none">
+              <div class="misi-card" id="misi-1">
+                <div class="misi-head"><span class="misi-no">1</span><span class="misi-status" id="st-m1">⬜ Belum selesai</span></div>
+                <div class="misi-teks"><b>Tekanan uap turun:</b> pilih eksperimen <b>Tekanan uap</b>, beri zat terlarut (massa &gt; 0), lalu jalankan dan bandingkan kedua alat ukur.</div>
+              </div>
+              <div class="misi-card" id="misi-2">
+                <div class="misi-head"><span class="misi-no">2</span><span class="misi-status" id="st-m2">⬜ Belum selesai</span></div>
+                <div class="misi-teks"><b>Titik didih naik:</b> jalankan eksperimen <b>Titik didih</b> sampai ΔTb ≥ 1,0 °C. Petunjuk: pilih elektrolit dan massa yang cukup besar.</div>
+              </div>
+              <div class="misi-card" id="misi-3">
+                <div class="misi-head"><span class="misi-no">3</span><span class="misi-status" id="st-m3">⬜ Belum selesai</span></div>
+                <div class="misi-teks"><b>Titik beku turun:</b> jalankan eksperimen <b>Titik beku</b> sampai ΔTf ≥ 3,0 °C.</div>
+              </div>
+              <div class="misi-card" id="misi-4">
+                <div class="misi-head"><span class="misi-no">4</span><span class="misi-status" id="st-m4">⬜ Belum selesai</span></div>
+                <div class="misi-teks"><b>Elektrolit vs nonelektrolit:</b> selesaikan satu eksperimen dengan zat nonelektrolit (glukosa/urea) dan satu dengan elektrolit (NaCl/CaCl₂/AlCl₃), lalu jawab pertanyaannya.</div>
+                <div id="m4-quiz"></div>
+              </div>
+              <div class="misi-card" id="misi-5">
+                <div class="misi-head"><span class="misi-no">5</span><span class="misi-status" id="st-m5">⬜ Belum selesai</span></div>
+                <div class="misi-teks"><b>Arah osmosis:</b> jalankan eksperimen <b>Osmosis</b> dengan zat terlarut, lalu tentukan arah aliran air.</div>
+                <div id="m5-quiz"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar">
+        <button class="nav-btn nav-back" data-sfx onclick="goMenu()">◀ Kembali ke Menu</button>
+        <button class="nav-btn nav-next" id="lab-selesai-btn" data-sfx onclick="labSelesai()" disabled>Selesai Praktikum ▶</button>
+      </div>
+    </section>
+
+    <!-- ============ MODAL LOGIN ============ -->
+    <div class="modal-bg" id="modal-login">
+      <div class="modal" style="width: 550px; text-align: center; padding: 46px;">
+        <button class="tutup" data-sfx onclick="closeModal('modal-login')" aria-label="Tutup">✕</button>
+        <h3>Selamat Datang!</h3>
+        <p style="margin-bottom:22px;">Silakan isi identitasmu sebelum mulai belajar.</p>
+        <input type="text" id="in-nama" class="input-form" placeholder="Nama Lengkap" required>
+        <input type="text" id="in-sekolah" class="input-form" placeholder="Asal Sekolah">
+        <input type="text" id="in-kelas" class="input-form" placeholder="Kelas">
+        <div id="login-pesan" style="color:var(--bad-d); font-weight:700; margin-bottom:14px; display:none;">⚠️ Nama belum diisi!</div>
+        <button class="btn btn-kuning" style="width:100%; height:62px; font-size:23px; margin-top:8px;" data-sfx onclick="simpanIdentitas()">Mulai Belajar</button>
+      </div>
+    </div>
+
+    <!-- ============ MODAL INFO ============ -->
+    <div class="modal-bg" id="modal-info">
+      <div class="modal">
+        <button class="tutup" data-sfx onclick="closeModal('modal-info')" aria-label="Tutup">✕</button>
+        <h3>Informasi Materi</h3>
+        <table class="info-tabel">
+          <tr><td>Fase / Kelas</td><td id="cfg-fase">Fase F • Kelas XII</td></tr>
+          <tr><td>Mata Pelajaran</td><td id="cfg-mapel">Kimia</td></tr>
+          <tr><td>Unit</td><td id="cfg-unit">Elektrokimia</td></tr>
+          <tr><td>Sub Unit</td><td id="cfg-subunit">Sifat Koligatif Larutan</td></tr>
+          <tr><td>Tujuan Pembelajaran</td><td id="cfg-tp"></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ MODAL PROFIL ============ -->
+    <div class="modal-bg" id="modal-dev">
+      <div class="modal" style="width: 860px; padding: 38px 40px;">
+        <button class="tutup" data-sfx onclick="closeModal('modal-dev')" aria-label="Tutup">✕</button>
+        <h3 style="text-align: center; margin-bottom: 22px;">Profil Pengembang</h3>
+        <div style="display: flex; gap: 30px; align-items: center; background: var(--tint-2); padding: 28px; border-radius: 20px; border: 1.5px solid var(--line);">
+          <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+            <div style="position: relative;">
+              <img id="cfg-foto" src="./asset/img/profil.jpg" alt="Foto Pengembang" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; box-shadow: var(--sh-2); background: #fff; border: 4px solid var(--gold);" onerror="imgErr(this)">
+              <div style="position: absolute; bottom: 4px; right: 4px; background: var(--ok-d); color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 3px solid #fff;" title="Terverifikasi">✓</div>
+            </div>
+            <div style="background: var(--orange); color: #fff; font-weight: 800; padding: 6px 18px; border-radius: 99px; font-size: 15px;">Pak Sabirin</div>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <table class="info-tabel" style="margin-top: 0; border-radius: 12px; overflow: hidden; table-layout: fixed;">
+              <tr><td style="width: 33%;">Nama Pengembang</td><td id="cfg-nama" style="font-weight: 800; color: var(--navy); font-size: 21px;"></td></tr>
+              <tr><td>Instansi</td><td id="cfg-instansi"></td></tr>
+              <tr><td>Surel</td><td id="cfg-surel"></td></tr>
+              <tr><td>Tahun Pembuatan</td><td id="cfg-tahun"></td></tr>
+              <tr><td>Jenis</td><td id="cfg-jenis"></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MODAL REFERENSI ============ -->
+    <div class="modal-bg" id="modal-ref">
+      <div class="modal" style="width: 900px; padding: 32px 40px;">
+        <button class="tutup" data-sfx onclick="closeModal('modal-ref')" aria-label="Tutup">✕</button>
+        <h3>Referensi</h3>
+        <h4 style="font-size:15px;color:var(--navy);margin:12px 0 6px;">📚 Referensi Materi</h4>
+        <ul class="referensi-list" id="cfg-ref-materi"></ul>
+        <h4 style="font-size:15px;color:var(--navy);margin:12px 0 6px;">🎨 Aset Visual &amp; Efek Suara</h4>
+        <ul class="referensi-list" id="cfg-ref-aset"></ul>
+        <h4 style="font-size:15px;color:var(--navy);margin:12px 0 6px;">🤖 Keterlibatan AI</h4>
+        <ul class="referensi-list" id="cfg-ref-ai"></ul>
+        <div class="referensi-note">Catatan: seluruh materi, soal, dan pembahasan disusun oleh pengembang.</div>
+      </div>
+    </div>
+
+    <!-- ============ MODAL AKHIR ============ -->
+    <div class="modal-bg" id="modal-akhir">
+      <div class="modal" style="width: 620px; text-align: center; padding: 44px;">
+        <button class="tutup" data-sfx onclick="closeModal('modal-akhir')" aria-label="Tutup">✕</button>
+        <h3 id="akhir-judul">Selesai!</h3>
+        <div class="akhir" style="flex:none; margin:10px 0;">
+          <div class="identitas" id="akhir-ident"></div>
+          <div class="skor-angka" id="akhir-skor">0</div>
+          <div id="akhir-kal" style="font-size:19px; font-weight:700; color:var(--navy); max-width:460px; margin:0 auto;"></div>
+        </div>
+        <div style="display:flex; gap:14px; margin-top:18px;">
+          <button class="btn btn-biru" style="flex:1; height:56px; font-size:18px;" data-sfx onclick="ulangi()">🔁 Ulangi</button>
+          <button class="btn btn-kuning" style="flex:1; height:56px; font-size:18px;" data-sfx onclick="closeModal('modal-akhir'); goMenu()">🏠 Menu Utama</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MODAL LAB SELESAI ============ -->
+    <div class="modal-bg" id="modal-lab">
+      <div class="modal" style="width:640px; text-align:center; padding:44px;">
+        <button class="tutup" data-sfx onclick="closeModal('modal-lab')" aria-label="Tutup">✕</button>
+        <h3>🎉 Praktikum Selesai!</h3>
+        <p>Kamu telah menyelesaikan seluruh misi di Lab Maya.</p>
+        <div class="akhir" style="flex:none; margin:10px 0;">
+          <div style="font-size:19px; font-weight:700; color:var(--navy);">Skor Praktikum</div>
+          <div class="skor-angka"><span id="lab-akhir-skor">0</span></div>
+          <div id="lab-akhir-kal" style="font-size:19px; font-weight:700; max-width:460px; margin:0 auto; color:var(--navy);"></div>
+        </div>
+        <div style="display:flex; gap:14px; margin-top:18px;">
+          <button class="btn btn-biru" style="flex:1; height:56px; font-size:18px;" data-sfx onclick="closeModal('modal-lab')">Lanjut Eksplorasi</button>
+          <button class="btn btn-kuning" style="flex:1; height:56px; font-size:18px;" data-sfx onclick="closeModal('modal-lab'); goMenu()">🏠 Menu Utama</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="script.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>
