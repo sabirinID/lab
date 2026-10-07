@@ -20,3 +20,7 @@ Landing page dan tiga topik praktikum virtual (Lab Maya).
 ## Menjalankan
 
 Buka `index.html` di peramban, atau jalankan `python3 -m http.server 8000` dari folder ini.
+
+## Referensi
+
+Logicus Academy. (2026). Virtual Lab. http://lab.logicus.online
