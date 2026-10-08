@@ -1,6 +1,6 @@
 # Virtual Lab Kimia
 
-Landing page dan tiga topik praktikum virtual (Lab Maya).
+Landing page dan empat topik praktikum virtual (Lab Maya).
 
 ## Struktur
 
@@ -9,6 +9,7 @@ Landing page dan tiga topik praktikum virtual (Lab Maya).
 - `sel-volta/` : Media Pembelajaran dan Lab Maya Sel Volta
 - `sel-elektrolisis/` : Media Pembelajaran dan Lab Maya Sel Elektrolisis
 - `sifat-koligatif/` : Media Pembelajaran dan Lab Maya Sifat Koligatif Larutan
+- `termokimia/` : Media Pembelajaran dan Lab Maya Termokimia
 
 ## Menambah topik baru
 
@@ -20,7 +21,3 @@ Landing page dan tiga topik praktikum virtual (Lab Maya).
 ## Menjalankan
 
 Buka `index.html` di peramban, atau jalankan `python3 -m http.server 8000` dari folder ini.
-
-## Referensi
-
-Logicus Academy. (2026). Virtual Lab. http://lab.logicus.online

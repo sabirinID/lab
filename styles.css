@@ -190,11 +190,8 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 
 .about h2 { margin-bottom: 1rem; }
 
-/* tiga kartu topik berdampingan pada layar lebar */
-@media (min-width: 1120px) {
-  .topics { grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
-  .topic h3 { font-size: 1.65rem; }
-  .topic-body { padding: 1.4rem 1.3rem 1.6rem; }
-  .ticks li { font-size: .97rem; }
-  .stats dd { font-size: 1.5rem; }
+/* empat kartu topik: dua kolom agar tetap lega */
+@media (min-width: 980px) {
+  .topics { grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
 }
+.t-termo .topic-img { border-bottom-color: #FF9A5C; }
