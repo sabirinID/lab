@@ -190,8 +190,22 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 
 .about h2 { margin-bottom: 1rem; }
 
-/* empat kartu topik: dua kolom agar tetap lega */
+/* lima kartu + satu slot "segera hadir": dua kolom, lalu tiga kolom pada layar lebar */
 @media (min-width: 980px) {
   .topics { grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
 }
+@media (min-width: 1180px) {
+  .topics { grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+  .topic h3 { font-size: 1.65rem; }
+  .topic-body { padding: 1.4rem 1.3rem 1.6rem; }
+  .ticks li { font-size: .97rem; }
+  .stats dd { font-size: 1.5rem; }
+}
 .t-termo .topic-img { border-bottom-color: #FF9A5C; }
+.t-laju .topic-img { border-bottom-color: #4CC38A; }
+.btn-green { background: #1E8E5A; color: #fff; } .btn-green:hover { background: #26a36a; }
+.topic-soon { align-items: center; justify-content: center; text-align: center; gap: .6rem; padding: 2rem 1.6rem; border: 2px dashed var(--line); background: transparent; box-shadow: none; min-height: 260px; color: var(--muted); }
+.topic-soon:hover { transform: none; box-shadow: none; }
+.topic-soon h3 { font-size: 1.5rem; color: var(--navy); margin: .4rem 0 0; }
+.topic-soon p { margin: 0; max-width: 28ch; }
+.topic-soon a { color: var(--orange-d); font-weight: 700; }
