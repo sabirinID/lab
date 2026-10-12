@@ -204,8 +204,10 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 .t-termo .topic-img { border-bottom-color: #FF9A5C; }
 .t-laju .topic-img { border-bottom-color: #4CC38A; }
 .btn-green { background: #1E8E5A; color: #fff; } .btn-green:hover { background: #26a36a; }
-.topic-soon { align-items: center; justify-content: center; text-align: center; gap: .6rem; padding: 2rem 1.6rem; border: 2px dashed var(--line); background: transparent; box-shadow: none; min-height: 260px; color: var(--muted); }
+.topic-soon { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: center; text-align: left; gap: 1rem; padding: 1.3rem 1.6rem; border: 2px dashed var(--line); background: transparent; box-shadow: none; color: var(--muted); flex-wrap: wrap; }
 .topic-soon:hover { transform: none; box-shadow: none; }
-.topic-soon h3 { font-size: 1.5rem; color: var(--navy); margin: .4rem 0 0; }
-.topic-soon p { margin: 0; max-width: 28ch; }
+.topic-soon h3 { font-size: 1.25rem; color: var(--navy); margin: 0; }
+.topic-soon p { margin: 0; }
 .topic-soon a { color: var(--orange-d); font-weight: 700; }
+.t-setimbang .topic-img { border-bottom-color: #B07AD8; }
+.btn-blue { background: #25508C; color: #fff; } .btn-blue:hover { background: #2f63ad; }
