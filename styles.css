@@ -211,3 +211,9 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 .topic-soon a { color: var(--orange-d); font-weight: 700; }
 .t-setimbang .topic-img { border-bottom-color: #B07AD8; }
 .btn-blue { background: #25508C; color: #fff; } .btn-blue:hover { background: #2f63ad; }
+.t-ksp .topic-img { border-bottom-color: #F2C21B; }
+@media (min-width: 1180px) {
+  .topic-soon { grid-column: span 2; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: .6rem; }
+  .topic-soon p { max-width: 34ch; }
+  .topic-soon h3 { font-size: 1.5rem; }
+}

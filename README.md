@@ -1,6 +1,6 @@
 # Virtual Lab Kimia
 
-Landing page dan enam topik praktikum virtual (Lab Maya).
+Landing page dan tujuh topik praktikum virtual (Lab Maya).
 
 ## Struktur
 
@@ -12,6 +12,7 @@ Landing page dan enam topik praktikum virtual (Lab Maya).
 - `termokimia/` : Media Pembelajaran dan Lab Maya Termokimia
 - `laju-reaksi/` : Media Pembelajaran dan Lab Maya Laju Reaksi
 - `kesetimbangan/` : Media Pembelajaran dan Lab Maya Kesetimbangan Kimia
+- `kelarutan/` : Media Pembelajaran dan Lab Maya Kelarutan dan Hasil Kali Kelarutan
 
 ## Menambah topik baru
 
