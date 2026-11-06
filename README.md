@@ -1,6 +1,6 @@
 # Virtual Lab Kimia
 
-Landing page dan sembilan topik praktikum virtual (Lab Maya).
+Landing page dan sepuluh topik praktikum virtual (Lab Maya).
 
 ## Struktur
 
@@ -15,6 +15,7 @@ Landing page dan sembilan topik praktikum virtual (Lab Maya).
 - `kelarutan/` : Media Pembelajaran dan Lab Maya Kelarutan dan Hasil Kali Kelarutan
 - `asam-basa/` : Media Pembelajaran dan Lab Maya Kesetimbangan Ion dalam Larutan Asam dan Basa
 - `sistem-koloid/` : Media Pembelajaran dan Lab Maya Sistem Koloid
+- `bentuk-molekul/` : Media Pembelajaran dan Lab Maya 3D Bentuk Molekul (VSEPR, hibridisasi, kepolaran)
 
 ## Menambah topik baru
 

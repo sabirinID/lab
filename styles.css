@@ -214,3 +214,9 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 .t-ksp .topic-img { border-bottom-color: #F2C21B; }
 .t-ab .topic-img { border-bottom-color: #7B4FC9; }
 .t-kol .topic-img { border-bottom-color: #1E8E5A; }
+.t-bm .topic-img { border-bottom-color: #F26A21; }
+@media (min-width: 1180px) {
+  .topic-soon { grid-column: span 2; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: .6rem; }
+  .topic-soon p { max-width: 38ch; }
+  .topic-soon h3 { font-size: 1.5rem; }
+}
