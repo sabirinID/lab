@@ -1,6 +1,6 @@
 # Virtual Lab Kimia
 
-Landing page dan dua belas topik praktikum virtual (Lab Maya).
+Landing page dan tiga belas topik praktikum virtual (Lab Maya).
 
 ## Struktur
 
@@ -18,6 +18,7 @@ Landing page dan dua belas topik praktikum virtual (Lab Maya).
 - `bentuk-molekul/` : Media Pembelajaran dan Lab Maya 3D Bentuk Molekul (VSEPR, hibridisasi, kepolaran)
 - `ikatan-kimia/` : Media Pembelajaran dan Lab Maya Ikatan Kimia (ion, kovalen, logam, dan uji sifat fisik)
 - `stoikiometri/` : Media Pembelajaran dan Lab Maya Stoikiometri (konsep mol, pereaksi pembatas, rumus empiris)
+- `hukum-dasar-kimia/` : Media Pembelajaran dan Lab Maya Hukum Dasar Kimia (Lavoisier, Proust, Dalton, Gay-Lussac)
 
 ## Menambah topik baru
 
